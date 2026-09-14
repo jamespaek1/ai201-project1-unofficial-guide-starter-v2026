@@ -1,0 +1,12 @@
+Command: python app.py ask "What are the separate wash and dry prices in Morrow House, and which payment methods work?"
+Cache: disabled (AI201_CACHE=0)
+
+(best distance 0.252, cutoff 0.65)
+
+In Morrow House, the laundry costs $1.50 to wash and $1.25 to dry, and you can pay using either coin or card.
+
+Source: `housing_morrow_house_laundry.txt` (also found in `housing_morrow_house.txt`)
+
+Sources retrieved: housing_calder_annexe.txt, housing_innisfree_hall_laundry.txt, housing_morrow_house.txt, housing_morrow_house_laundry.txt, housing_old_brewhouse_laundry.txt
+
+1 model calls this session, 595 tokens (533 in, 62 out)

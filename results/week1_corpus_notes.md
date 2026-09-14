@@ -22,3 +22,11 @@ housing lottery explanation. Every source begins with a short identifying title.
 
 The starter index was built with the real all-MiniLM-L6-v2 ONNX model in a separate
 `starter` variant: 88 chunks stored. Generation is pending a GEMINI_API_KEY.
+
+## Follow-up after configuring the key
+
+The current pipeline now has a real generated sample with citations, recorded
+in `week1_sample_answer.json`. A later attempt to obtain an answer from the
+preserved starter index reached the model but returned a provider permission
+error; see `week1_generation_checks.md`. This follow-up happened after the
+chunker implementation and is not presented as an earlier milestone run.

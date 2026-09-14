@@ -4,10 +4,11 @@ James Paek · `campus_life` · Week 1
 
 Implementation assistance: Codex. Work is being recorded as it is performed.
 
-**Status:** The local index, custom chunker, retrieval calibration, and refusal
-checks are complete. A real generated sample answer still requires a local
-`GEMINI_API_KEY`. Criteria 4 and 5 await student-authored targets, as required
-by the Week 1 brief. No Week 2 evaluation has been run.
+**Status:** The local index, custom chunker, retrieval calibration, refusal
+checks, and real generated sample answer are complete. All 10 environment
+checks pass, including a real Gemini API call. Criteria 4 and 5 await
+student-authored targets, as required by the Week 1 brief. No Week 2 evaluation
+has been run.
 
 Setup and commands: [`RUNNING.md`](RUNNING.md). That starter reference is unchanged.
 
@@ -25,7 +26,7 @@ split into titled paragraph chunks, embedded locally, and searched in a Chroma
 cosine-distance index; a relevance gate runs before the Gemini prompt, which
 instructs the model to use only retrieved documents and name its sources. Use
 `python app.py index`, then `python app.py ask "your question"` after the setup
-in `RUNNING.md`; the generation step still needs the local API key to be verified.
+in `RUNNING.md`; configure your own `GEMINI_API_KEY` in the ignored `.env` file.
 
 ## Chunking Strategy
 
@@ -109,23 +110,41 @@ The good: cheapest housing tier by about $900 a year, and the singles are real s
 
 The bad: known damp problem on the ground floor; two rooms were taken offline in 2024.
 ```
+
 ## Sample Answer
 
 **Question:** What are the separate wash and dry prices in Morrow House, and
 which payment methods work?
 
-**Answer:** Pending a real model run. The API key has not been configured;
-no hand-written or simulated response is presented as program output.
+**Answer:** Actual output from `app.py::_ask_one`, with the answer generated
+by `generate.py::answer_from_chunks` using `gemini-3.5-flash-lite`. Caching was
+disabled, so this was one real model call.
 
-Once the key is in `.env`, run:
+```text
+(best distance 0.252, cutoff 0.65)
 
-```bash
-python app.py ask "What are the separate wash and dry prices in Morrow House, and which payment methods work?"
+In Morrow House, the laundry costs $1.50 to wash and $1.25 to dry, and you can pay using either coin or card.
+
+Source: `housing_morrow_house_laundry.txt` (also found in `housing_morrow_house.txt`)
+
+Sources retrieved: housing_calder_annexe.txt, housing_innisfree_hall_laundry.txt, housing_morrow_house.txt, housing_morrow_house_laundry.txt, housing_old_brewhouse_laundry.txt
+
+1 model calls this session, 595 tokens (533 in, 62 out)
 ```
 
-The complete returned answer and source line belong here after that command
-succeeds. The retrieved evidence already includes `housing_morrow_house_laundry.txt`
-and `housing_morrow_house.txt`; this is retrieval evidence, not a generated answer.
+The cited laundry post confirms all three details: $1.50 per wash, $1.25 per
+dry, and coin or card payment. The answer correctly uses Morrow House's prices
+even though the retrieved set also includes other residences.
+
+Saved evidence: [`results/week1_sample_answer.txt`](results/week1_sample_answer.txt)
+and the exact captured stdout in
+[`results/week1_sample_answer.json`](results/week1_sample_answer.json).
+
+A second uncached sample confirmed the same facts and sources. Two additional
+housing-lottery requests against the saved starter index returned a provider
+403 permission error, while the current Morrow House pipeline still worked.
+This limitation and the environment check are recorded in
+[`results/week1_generation_checks.md`](results/week1_generation_checks.md).
 
 **My relevance cutoff:** `THRESHOLD = 0.65` in `config.py`.
 
@@ -189,8 +208,9 @@ Week 1 CodePath course URL. Codex initially interpreted the repository's
 Week 1/Week 2 template as requiring both weeks. After reading the course's
 project tab, the work was limited to Week 1; the before/after acceptance runs
 were deferred, and the two custom criteria were left for the student to
-write because Milestone 2 explicitly requires student authorship. The missing
-API credential is recorded rather than filling the sample with an invented run.
+write because Milestone 2 explicitly requires student authorship. After the
+API credential was added locally, Codex verified the environment and captured
+a real model response for the sample answer; no simulated output was used.
 
 No stretch feature is claimed.
 
