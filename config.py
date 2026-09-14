@@ -33,17 +33,17 @@ CHUNK_OVERLAP = 0       # no body overlap; split_documents repeats the title
 
 # ─── Retrieval (Milestone 4) ─────────────────────────────────────────────────
 
-TOP_K = 5               # how many chunks to pull back per question
+TOP_K = 5               # Kestrel's full two-part wait-time answer ranks fifth
 
 # The relevance gate. If the best chunk is further away than this, the system
 # refuses to answer instead of handing the model thin material.
 #
 # LOWER IS BETTER: 0.3 is a close match, 0.9 is unrelated.
 #
-# 0.6 is a reasonable starting point, not a right answer. Milestone 4 has you
-# measure your own two groups of distances and put the cutoff in the gap.
-# Most corpora land somewhere between 0.45 and 0.75.
-THRESHOLD = 0.6
+# Measured with the custom campus_life chunks: in-corpus maximum 0.470400,
+# out-of-corpus minimum 0.824593. Their midpoint is about 0.6475; use 0.65.
+# Full measurements: results/week1_distances.json. Recalibrate after changes.
+THRESHOLD = 0.65
 
 
 # ─── Models ──────────────────────────────────────────────────────────────────

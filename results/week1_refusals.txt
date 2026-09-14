@@ -1,0 +1,26 @@
+Question: What is the capital of Mongolia?
+  (best distance 0.825, cutoff 0.65)
+
+I don't have enough information about that.
+
+Question: How do I change the oil in a diesel engine?
+  (best distance 0.923, cutoff 0.65)
+
+I don't have enough information about that.
+
+Question: Who won the 1994 World Cup?
+  (best distance 0.886, cutoff 0.65)
+
+I don't have enough information about that.
+
+Question: What is the recommended dosage of ibuprofen for a headache?
+  (best distance 0.849, cutoff 0.65)
+
+I don't have enough information about that.
+
+Question: How do I write a for loop in Rust?
+  (best distance 0.864, cutoff 0.65)
+
+I don't have enough information about that.
+
+0 model calls this session

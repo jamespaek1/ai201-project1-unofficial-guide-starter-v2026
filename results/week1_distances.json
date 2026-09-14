@@ -1,0 +1,432 @@
+{
+  "recorded_at": "2026-09-14T19:17:03.394582+00:00",
+  "revision": "af6947dbb01fa84149edf8445020b96aee8a19ba",
+  "corpus": "campus_life",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "chunk_size": 350,
+  "body_overlap": 0,
+  "top_k": 5,
+  "threshold_at_measurement": 0.6,
+  "rows": [
+    {
+      "question": "How does housing lottery priority differ for rising sophomores versus juniors and seniors?",
+      "in_corpus": true,
+      "best_distance": 0.19165140390396118,
+      "results": [
+        {
+          "text": "On the housing lottery\n\nThe housing lottery is not random in the way most people assume. Rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly. That means a senior who took summer courses reliably beats a senior who didn't. Numbers come out the second week of March and selection runs over four evenings.",
+          "source": "admin_housing_lottery.txt",
+          "label": "admin_housing_lottery.txt#0",
+          "distance": 0.19165140390396118,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Tamsin Court — what it's actually like\n\nI lived here my sophomore year. Built 2021. Rooms are studio apartments with private kitchen and bathroom.\n\nThe good: the most independent housing on campus, and the only option with a full kitchen.\n\nThe bad: the most expensive tier by a wide margin, and isolating if you're new.",
+          "source": "housing_tamsin_court.txt",
+          "label": "housing_tamsin_court.txt#0",
+          "distance": 0.6745032709727905,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "STAT 150 Applied Statistics — assessment\n\nThree equally weighted midterms, no final. No curve, but the lowest midterm is dropped.\n\nThe dropped midterm makes the first one low-stakes; use it to learn the format.",
+          "source": "course_stat_150_exams.txt",
+          "label": "course_stat_150_exams.txt#0",
+          "distance": 0.7003940939903259,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Registration and your adviser\n\nYou need an adviser hold lifted before you can register, and advisers get busy in the week before registration opens. Book two weeks out.\n\nRegistration times are staggered by credit hours, same as the housing lottery. Popular courses fill in the first two days.",
+          "source": "advising_registration.txt",
+          "label": "advising_registration.txt#0",
+          "distance": 0.7021344304084778,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "STAT 150 Applied Statistics\n\nThe one piece of advice: the dropped midterm makes the first one low-stakes; use it to learn the format.",
+          "source": "course_stat_150.txt",
+          "label": "course_stat_150.txt#1",
+          "distance": 0.7161474227905273,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    },
+    {
+      "question": "What are the separate wash and dry prices in Morrow House, and which payment methods work?",
+      "in_corpus": true,
+      "best_distance": 0.2522556781768799,
+      "results": [
+        {
+          "text": "Laundry in Morrow House\n\nMachines take $1.50 wash, $1.25 dry, coin or card. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_morrow_house_laundry.txt",
+          "label": "housing_morrow_house_laundry.txt#0",
+          "distance": 0.2522556781768799,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Morrow House — what it's actually like\n\nLaundry costs $1.50 wash, $1.25 dry, coin or card. On noise: loud until about 1am on weekends, no enforced quiet hours.",
+          "source": "housing_morrow_house.txt",
+          "label": "housing_morrow_house.txt#1",
+          "distance": 0.29708343744277954,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Old Brewhouse\n\nMachines take $1.50 wash, $1.50 dry, coin only, and the machines are old. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_old_brewhouse_laundry.txt",
+          "label": "housing_old_brewhouse_laundry.txt#0",
+          "distance": 0.4197224974632263,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Innisfree Hall\n\nMachines take $1.75 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_innisfree_hall_laundry.txt",
+          "label": "housing_innisfree_hall_laundry.txt#0",
+          "distance": 0.4386637806892395,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Calder Annexe — what it's actually like\n\nLaundry costs $2.00 wash, $1.75 dry, app-based. On noise: depends entirely on your cluster; there's no building-wide pattern.",
+          "source": "housing_calder_annexe.txt",
+          "label": "housing_calder_annexe.txt#1",
+          "distance": 0.4506523013114929,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    },
+    {
+      "question": "How long is the Kestrel Commons wait between 12:15 and 1:00, and before 11:45?",
+      "in_corpus": true,
+      "best_distance": 0.2292608618736267,
+      "results": [
+        {
+          "text": "Re: Kestrel Commons\n\nAdding to what people have said about Kestrel Commons. The wait figure of 20 to 25 minutes between 12:15 and 1:00 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.\n\nAlso worth saying: the salad bar wilts after 1:30. Nobody tells you this at orientation.",
+          "source": "dining_kestrel_commons_followup.txt",
+          "label": "dining_kestrel_commons_followup.txt#0",
+          "distance": 0.2292608618736267,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Kestrel Commons\n\nHours are 7:00am to 9:00pm weekdays, 9:00am to 8:00pm weekends. Costs one meal swipe, or $12.50 cash.",
+          "source": "dining_kestrel_commons.txt",
+          "label": "dining_kestrel_commons.txt#1",
+          "distance": 0.29628902673721313,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Re: Halden Hall\n\nAdding to what people have said about Halden Hall. The wait figure of rarely more than 8 minutes matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.\n\nAlso worth saying: closes at 7:00pm, which catches people out. Nobody tells you this at orientation.",
+          "source": "dining_halden_hall_followup.txt",
+          "label": "dining_halden_hall_followup.txt#0",
+          "distance": 0.431490421295166,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Re: The Ridgeway Café\n\nAdding to what people have said about The Ridgeway Café. The wait figure of 10 to 15 minutes at 12:30 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.",
+          "source": "dining_the_ridgeway_cafe_followup.txt",
+          "label": "dining_the_ridgeway_cafe_followup.txt#0",
+          "distance": 0.4406765103340149,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Kestrel Commons\n\nI'm a junior and I've done this twice now. Wait times: 20 to 25 minutes between 12:15 and 1:00, under 5 minutes before 11:45. The thing worth going for is the stir-fry station, made to order. The thing to know is that the salad bar wilts after 1:30.",
+          "source": "dining_kestrel_commons.txt",
+          "label": "dining_kestrel_commons.txt#0",
+          "distance": 0.4505150318145752,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    },
+    {
+      "question": "In CS 210, are the midterms and final curved, and what material are the exams drawn from?",
+      "in_corpus": true,
+      "best_distance": 0.21158623695373535,
+      "results": [
+        {
+          "text": "CS 210 Data Structures — assessment\n\nTwo midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.\n\nDo the labs even though they're only 10% — the exams reuse the lab problems.",
+          "source": "course_cs_210_exams.txt",
+          "label": "course_cs_210_exams.txt#0",
+          "distance": 0.21158623695373535,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 210 Data Structures\n\nI'm a junior and I've done this twice now. Format is lecture with weekly labs; slides go up after class, not before. Assessment: two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.\n\nExpect 8 to 10 hours a week outside class.",
+          "source": "course_cs_210.txt",
+          "label": "course_cs_210.txt#0",
+          "distance": 0.3954176902770996,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 340 Databases — assessment\n\nOne midterm and a final, both open-book. Lightly curved, usually two or three points.\n\nStart the term project in week three, not week eight; everyone learns this the hard way.",
+          "source": "course_cs_340_exams.txt",
+          "label": "course_cs_340_exams.txt#0",
+          "distance": 0.4041333794593811,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "ENGL 205 Writing for the Sciences — assessment\n\nNo exams; a portfolio of six revised pieces. Not curved.\n\nThe portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.",
+          "source": "course_engl_205_exams.txt",
+          "label": "course_engl_205_exams.txt#0",
+          "distance": 0.41565245389938354,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 340 Databases\n\nI'm a junior and I've done this twice now. Format is lecture twice a week plus a project that runs the whole term. Assessment: one midterm and a final, both open-book. Lightly curved, usually two or three points.\n\nExpect 6 hours a week early, 15 in the last three weeks when the project lands.",
+          "source": "course_cs_340.txt",
+          "label": "course_cs_340.txt#0",
+          "distance": 0.4457675814628601,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    },
+    {
+      "question": "When does the library close during term versus reading week?",
+      "in_corpus": true,
+      "best_distance": 0.4703996845754693,
+      "results": [
+        {
+          "text": "Library hours and where to actually sit\n\nOpen until 2am during term, until 10pm during reading week, which is backwards and catches everyone out every single year.\n\nThird floor is silent and enforced. Second floor is quiet in theory. The basement has the only outlets at every seat and is therefore full from about 10am.",
+          "source": "study_library_hours.txt",
+          "label": "study_library_hours.txt#0",
+          "distance": 0.4703996845754693,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Noise levels in Calder Annexe\n\nAsked about this a lot so writing it down. Depends entirely on your cluster; there's no building-wide pattern.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.",
+          "source": "housing_calder_annexe_noise.txt",
+          "label": "housing_calder_annexe_noise.txt#0",
+          "distance": 0.5051690340042114,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "On the library holds\n\nYou can place a hold on a checked-out book and it usually arrives in two to three days. What isn't advertised: the interlibrary system covers eleven other institutions and requests through it take about a week but almost never fail.",
+          "source": "admin_library_holds.txt",
+          "label": "admin_library_holds.txt#0",
+          "distance": 0.5160137414932251,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Noise levels in Morrow House\n\nAsked about this a lot so writing it down. Loud until about 1am on weekends, no enforced quiet hours.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.",
+          "source": "housing_morrow_house_noise.txt",
+          "label": "housing_morrow_house_noise.txt#0",
+          "distance": 0.5241934061050415,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Textbooks without paying full price\n\nThe library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.",
+          "source": "money_textbooks.txt",
+          "label": "money_textbooks.txt#0",
+          "distance": 0.5333077148199334,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    },
+    {
+      "question": "What is the capital of Mongolia?",
+      "in_corpus": false,
+      "best_distance": 0.824593186378479,
+      "results": [
+        {
+          "text": "HIST 118 Modern World History — assessment\n\nNo exams; two essays and a final project. Not curved.\n\nThe essay rubric is posted in week 2 and it's followed exactly — read it early.",
+          "source": "course_hist_118_exams.txt",
+          "label": "course_hist_118_exams.txt#0",
+          "distance": 0.824593186378479,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "HIST 118 Modern World History\n\nTransferred in last year, so take this with a grain of salt. Format is discussion-led seminar, attendance is 15% of the grade. Assessment: no exams; two essays and a final project. Not curved.\n\nExpect a lot of reading, about 120 pages a week, but no problem sets.",
+          "source": "course_hist_118.txt",
+          "label": "course_hist_118.txt#0",
+          "distance": 0.8520395755767822,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Morrow House — what it's actually like\n\nJust finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.\n\nThe good: cheapest housing tier by about $900 a year, and the singles are real singles.\n\nThe bad: known damp problem on the ground floor; two rooms were taken offline in 2024.",
+          "source": "housing_morrow_house.txt",
+          "label": "housing_morrow_house.txt#0",
+          "distance": 0.8738945126533508,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "HIST 118 Modern World History\n\nThe one piece of advice: the essay rubric is posted in week 2 and it's followed exactly — read it early.",
+          "source": "course_hist_118.txt",
+          "label": "course_hist_118.txt#1",
+          "distance": 0.9026695489883423,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Morrow House\n\nMachines take $1.50 wash, $1.25 dry, coin or card. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_morrow_house_laundry.txt",
+          "label": "housing_morrow_house_laundry.txt#0",
+          "distance": 0.9105304479598999,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    },
+    {
+      "question": "How do I change the oil in a diesel engine?",
+      "in_corpus": false,
+      "best_distance": 0.9231168031692505,
+      "results": [
+        {
+          "text": "Verrill Street Grill\n\nHours are 11:00am to 1:00am daily during term. Costs declining balance, or cash after 11:00pm.",
+          "source": "dining_verrill_street_grill.txt",
+          "label": "dining_verrill_street_grill.txt#1",
+          "distance": 0.9231168031692505,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "STAT 150 Applied Statistics\n\nThe one piece of advice: the dropped midterm makes the first one low-stakes; use it to learn the format.",
+          "source": "course_stat_150.txt",
+          "label": "course_stat_150.txt#1",
+          "distance": 0.9335387945175171,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "On the meal plan changes\n\nYou can change your meal plan tier once, in the first ten days of the semester. After that it's locked. Downgrading refunds the difference to your student account; upgrading bills you immediately.",
+          "source": "admin_meal_plan_changes.txt",
+          "label": "admin_meal_plan_changes.txt#0",
+          "distance": 0.9340106844902039,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "ENGL 205 Writing for the Sciences\n\nThe one piece of advice: the portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.",
+          "source": "course_engl_205.txt",
+          "label": "course_engl_205.txt#1",
+          "distance": 0.9382785558700562,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "ECON 101 Introduction to Economics\n\nThe one piece of advice: the discussion section is where the exam-style questions get worked; attendance isn't taken but it correlates.",
+          "source": "course_econ_101.txt",
+          "label": "course_econ_101.txt#1",
+          "distance": 0.9452496767044067,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    },
+    {
+      "question": "Who won the 1994 World Cup?",
+      "in_corpus": false,
+      "best_distance": 0.8858600854873657,
+      "results": [
+        {
+          "text": "HIST 118 Modern World History — assessment\n\nNo exams; two essays and a final project. Not curved.\n\nThe essay rubric is posted in week 2 and it's followed exactly — read it early.",
+          "source": "course_hist_118_exams.txt",
+          "label": "course_hist_118_exams.txt#0",
+          "distance": 0.8858600854873657,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "HIST 118 Modern World History\n\nTransferred in last year, so take this with a grain of salt. Format is discussion-led seminar, attendance is 15% of the grade. Assessment: no exams; two essays and a final project. Not curved.\n\nExpect a lot of reading, about 120 pages a week, but no problem sets.",
+          "source": "course_hist_118.txt",
+          "label": "course_hist_118.txt#0",
+          "distance": 0.928281307220459,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "HIST 118 Modern World History\n\nThe one piece of advice: the essay rubric is posted in week 2 and it's followed exactly — read it early.",
+          "source": "course_hist_118.txt",
+          "label": "course_hist_118.txt#1",
+          "distance": 0.9301025867462158,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "PHYS 130 Mechanics\n\nJust finished a year in this building. Format is lecture with a compulsory lab that meets fortnightly. Assessment: three midterms, no final, plus a lab practical. Not curved, but the lowest midterm is dropped.\n\nExpect 7 hours a week, plus 3 on lab weeks.",
+          "source": "course_phys_130.txt",
+          "label": "course_phys_130.txt#0",
+          "distance": 0.9335956573486328,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Innisfree Hall — what it's actually like\n\nTransferred in last year, so take this with a grain of salt. Built 1991, renovated 2022. Rooms are doubles arranged as pairs sharing one bathroom between two rooms.\n\nThe good: the shared-bathroom-between-two-rooms arrangement is the best compromise on campus.",
+          "source": "housing_innisfree_hall.txt",
+          "label": "housing_innisfree_hall.txt#0",
+          "distance": 0.9360594153404236,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    },
+    {
+      "question": "What is the recommended dosage of ibuprofen for a headache?",
+      "in_corpus": false,
+      "best_distance": 0.8486931364455805,
+      "results": [
+        {
+          "text": "Textbooks without paying full price\n\nThe library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.",
+          "source": "money_textbooks.txt",
+          "label": "money_textbooks.txt#0",
+          "distance": 0.8486931364455805,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 340 Databases — assessment\n\nOne midterm and a final, both open-book. Lightly curved, usually two or three points.\n\nStart the term project in week three, not week eight; everyone learns this the hard way.",
+          "source": "course_cs_340_exams.txt",
+          "label": "course_cs_340_exams.txt#0",
+          "distance": 0.8659583330154419,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "The Ridgeway Café\n\nSecond-year here. Wait times: 10 to 15 minutes at 12:30, none after 2:00. The thing worth going for is the only place on campus with real espresso. The thing to know is that seating is tight; about 40 seats for a building of 900.\n\nHours are 7:00am to 4:00pm weekdays only. Costs declining balance only, no meal swipes.",
+          "source": "dining_the_ridgeway_cafe.txt",
+          "label": "dining_the_ridgeway_cafe.txt#0",
+          "distance": 0.8707544207572937,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "ENGL 205 Writing for the Sciences — assessment\n\nNo exams; a portfolio of six revised pieces. Not curved.\n\nThe portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.",
+          "source": "course_engl_205_exams.txt",
+          "label": "course_engl_205_exams.txt#0",
+          "distance": 0.8744560480117798,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "On the pass/fail option\n\nAny course outside your major can be taken pass/fail, and — the part nobody mentions — you can declare it as late as week eight, after you've seen your midterm. A pass needs a C- or better. Two per year, maximum eight across a degree.",
+          "source": "admin_pass_fail_option.txt",
+          "label": "admin_pass_fail_option.txt#0",
+          "distance": 0.8758120536804199,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    },
+    {
+      "question": "How do I write a for loop in Rust?",
+      "in_corpus": false,
+      "best_distance": 0.8635140061378479,
+      "results": [
+        {
+          "text": "HIST 118 Modern World History\n\nThe one piece of advice: the essay rubric is posted in week 2 and it's followed exactly — read it early.",
+          "source": "course_hist_118.txt",
+          "label": "course_hist_118.txt#1",
+          "distance": 0.8635140061378479,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "ENGL 205 Writing for the Sciences\n\nTransferred in last year, so take this with a grain of salt. Format is workshop format, you write every week and peers read it. Assessment: no exams; a portfolio of six revised pieces. Not curved.\n\nExpect 4 to 5 hours a week, mostly writing and rewriting.",
+          "source": "course_engl_205.txt",
+          "label": "course_engl_205.txt#0",
+          "distance": 0.8906915187835693,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "HIST 118 Modern World History — assessment\n\nNo exams; two essays and a final project. Not curved.\n\nThe essay rubric is posted in week 2 and it's followed exactly — read it early.",
+          "source": "course_hist_118_exams.txt",
+          "label": "course_hist_118_exams.txt#0",
+          "distance": 0.8959976434707642,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "ENGL 205 Writing for the Sciences — assessment\n\nNo exams; a portfolio of six revised pieces. Not curved.\n\nThe portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.",
+          "source": "course_engl_205_exams.txt",
+          "label": "course_engl_205_exams.txt#0",
+          "distance": 0.9056112170219421,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Calder Annexe\n\nMachines take $2.00 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_calder_annexe_laundry.txt",
+          "label": "housing_calder_annexe_laundry.txt#0",
+          "distance": 0.9178003072738647,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ]
+    }
+  ]
+}

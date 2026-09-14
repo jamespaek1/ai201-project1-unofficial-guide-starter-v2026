@@ -4,19 +4,12 @@ James Paek · `campus_life` · Week 1
 
 Implementation assistance: Codex. Work is being recorded as it is performed.
 
-> **This file is your submission.** Fill it in as you go — most sections get
-> written during the milestone that produces them, not at the end.
->
-> How the starter works, and every command you'll need, is in `RUNNING.md`.
-> Leave that file alone.
->
-> **Paste everything as text.** No screenshots, no video. A typed table gets
-> full credit; a picture of the same table gets none, because the grader can't
-> read it.
->
-> Delete these instruction blocks as you replace them. The `<!-- -->` comments
-> are notes to you and don't show up when the page renders — you can leave them
-> or remove them.
+**Status:** The local index, custom chunker, retrieval calibration, and refusal
+checks are complete. A real generated sample answer still requires a local
+`GEMINI_API_KEY`. Criteria 4 and 5 await student-authored targets, as required
+by the Week 1 brief. No Week 2 evaluation has been run.
+
+Setup and commands: [`RUNNING.md`](RUNNING.md). That starter reference is unchanged.
 
 ---
 
@@ -24,11 +17,15 @@ Implementation assistance: Codex. Work is being recorded as it is performed.
 
 ## What This Does
 
-<!-- Three or four sentences. Which corpus you picked, and the kinds of
-     questions your system answers. Write it for someone who has never seen
-     this repo.
-
-     Milestone 5. -->
+The Unofficial Guide searches the supplied `campus_life` corpus: 88 fictional
+student-life posts about housing, dining, courses, and campus services. It
+answers specific questions such as how housing lottery priority works, what
+Morrow House laundry costs, and when the library closes. Documents are cleaned,
+split into titled paragraph chunks, embedded locally, and searched in a Chroma
+cosine-distance index; a relevance gate runs before the Gemini prompt, which
+instructs the model to use only retrieved documents and name its sources. Use
+`python app.py index`, then `python app.py ask "your question"` after the setup
+in `RUNNING.md`; the generation step still needs the local API key to be verified.
 
 ## Chunking Strategy
 
@@ -114,50 +111,88 @@ The bad: known damp problem on the ground floor; two rooms were taken offline in
 ```
 ## Sample Answer
 
-<!-- One complete question and answer, pasted as text, with the source line
-     visible. Milestone 4. -->
+**Question:** What are the separate wash and dry prices in Morrow House, and
+which payment methods work?
 
-**Question:**
+**Answer:** Pending a real model run. The API key has not been configured;
+no hand-written or simulated response is presented as program output.
 
-**Answer:**
+Once the key is in `.env`, run:
 
+```bash
+python app.py ask "What are the separate wash and dry prices in Morrow House, and which payment methods work?"
 ```
-```
 
-**My relevance cutoff:**
+The complete returned answer and source line belong here after that command
+succeeds. The retrieved evidence already includes `housing_morrow_house_laundry.txt`
+and `housing_morrow_house.txt`; this is retrieval evidence, not a generated answer.
 
-<!-- The number you set in config.py, and how you got there.
+**My relevance cutoff:** `THRESHOLD = 0.65` in `config.py`.
 
-     You ran five questions your corpus covers and the five in OUT_OF_SCOPE
-     that it clearly doesn't, and wrote down the best distance for each. What
-     did those two groups look like? Where was the gap? Put the actual numbers
-     here — the table below wants all ten rows.
-
-     Milestone 4. -->
+Measured with the real `all-MiniLM-L6-v2` embedding model and cosine distance,
+using 115 custom chunks. In-corpus best distances range from 0.191651 to
+0.470400; out-of-corpus distances range from 0.824593 to 0.923117. The gap is
+0.354194 wide. Its midpoint is 0.647496, so 0.65 leaves space on both sides.
+The gate admits a question only when its best distance is strictly below 0.65.
+A lower cutoff of 0.30 would wrongly refuse the library-hours question; 0.90
+would admit four of these five unrelated questions.
 
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| How does housing lottery priority differ for rising sophomores versus juniors and seniors? | Yes | 0.191651 |
+| What are the separate wash and dry prices in Morrow House, and which payment methods work? | Yes | 0.252256 |
+| How long is the Kestrel Commons wait between 12:15 and 1:00, and before 11:45? | Yes | 0.229261 |
+| In CS 210, are the midterms and final curved, and what material are the exams drawn from? | Yes | 0.211586 |
+| When does the library close during term versus reading week? | Yes | 0.470400 |
+| What is the capital of Mongolia? | No | 0.824593 |
+| How do I change the oil in a diesel engine? | No | 0.923117 |
+| Who won the 1994 World Cup? | No | 0.885860 |
+| What is the recommended dosage of ibuprofen for a headache? | No | 0.848693 |
+| How do I write a for loop in Rust? | No | 0.863514 |
+
+Measured by `tools/calibrate.py::main` using `store.py::search`. Full retrieved
+text is in [`results/week1_distances.json`](results/week1_distances.json), and
+verbatim `app.py::cmd_retrieve` output is in
+[`results/week1_retrieval.txt`](results/week1_retrieval.txt). That initial
+measurement used the starter's 0.6 cutoff; the measured distances justified
+changing the cutoff to 0.65 afterward.
+
+**Top-k:** 5. For Kestrel Commons, the follow-up at rank 1 states the peak wait
+but does not give the exact pre-11:45 wait. The main post's first chunk, with
+both `20 to 25 minutes` and `under 5 minutes`, ranks fifth (distance 0.450515).
+Reducing top-k to 3 or 4 would lose part of that answer. Other dining halls also
+appear in the five results, so the model must distinguish the named place.
+The starter grounding instruction requires using only the supplied documents,
+refusing unsupported claims, and naming the file used.
+
+This is calibration on ten known questions, not a guarantee for unseen or
+near-topic questions. Similar campus language can still pass the gate even
+when a particular requested fact is absent. The prompt's refusal instruction
+remains the second layer.
 
 ## How I Used AI
 
-<!-- Two specific moments. For each: what you asked for, what came back, and
-     what you changed about it.
+The implementation, measurements, and this write-up were prepared with Codex.
+The following describes the actual requests and corrections in this session;
+it does not claim that the student manually wrote the generated code.
 
-     "I asked Claude to write the chunking function from my notes. It ignored
-     the overlap, so I added that myself" is the level of detail we're after.
-     "I used AI to help me code" is not.
+**1. Initial request and corpus-specific changes.** The initial request was
+"Complete the assignment." Codex read the starter and the campus posts,
+observed that the starter kept all 88 posts whole, and implemented a paragraph
+chunker. The replacement uses a 350-character soft target, repeats source
+titles, and removes body overlap; its tests verify that no body paragraph is
+lost or duplicated. These changes came from the separate dining/course
+paragraphs and the single qualified housing-lottery explanation.
 
-     Milestone 5. -->
+**2. Clarifying the assignment scope.** The follow-up request supplied the
+Week 1 CodePath course URL. Codex initially interpreted the repository's
+Week 1/Week 2 template as requiring both weeks. After reading the course's
+project tab, the work was limited to Week 1; the before/after acceptance runs
+were deferred, and the two custom criteria were left for the student to
+write because Milestone 2 explicitly requires student authorship. The missing
+API credential is recorded rather than filling the sample with an invented run.
 
-**1.**
-
-**2.**
-
-<!-- ── Stretch features ─────────────────────────────────────────────────────
-     Doing one? Say so here BEFORE you start. A feature this README never
-     claims earns nothing.
-     ───────────────────────────────────────────────────────────────────────── -->
+No stretch feature is claimed.
 
 ---
 
