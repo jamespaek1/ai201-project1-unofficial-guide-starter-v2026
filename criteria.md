@@ -23,8 +23,7 @@ For at least 4 of my 5 test questions, the retrieved chunks include one that
 contains the answer.
 
 **Why this target:**
-<!-- e.g. "One of my questions is about a topic only two documents mention, so
-     I expect that one to be hard." -->
+The five questions span housing, laundry, dining, course assessment, and library hours. Four of five demands coverage across several topics while allowing one failure from similarly worded residence posts or duplicated dining/course follow-ups.
 
 ---
 
@@ -33,8 +32,7 @@ contains the answer.
 Every answer the system produces names at least one source document.
 
 **Why this target:**
-<!-- Why all five and not four? What about your setup makes that achievable —
-     or what would have to go wrong for it not to be? -->
+All source filenames survive ingestion and retrieval and are included in the model prompt, so missing citations are an avoidable generation failure. Check all five in-corpus answers; the answer itself must name a retrieved document, not merely rely on the CLI’s list of retrieved sources.
 
 ---
 
@@ -50,12 +48,11 @@ in at least 4 of 5 tries.
      just keep five of them, or the "4 of 5" above has nothing to be 4 of. -->
 
 **Why this target:**
-<!-- What did your distances look like when you set the cutoff in Milestone 4?
-     Was there a clean gap, or did the two groups overlap? -->
+The five supplied out-of-scope questions concern geography, engines, sports, medicine, and Rust rather than these student-life posts. Four of five demands broad rejection without assuming semantic distance perfectly separates topics; the actual gap and cutoff will be measured in Milestone 4 and recorded in the README.
 
 ---
 
-## 4. Something about your chunks
+## 4. Chunk quality — awaiting student-authored criterion
 
 <!-- YOU WRITE THIS ONE.
 
@@ -77,7 +74,7 @@ in at least 4 of 5 tries.
 
 ---
 
-## 5. Your choice
+## 5. Chosen behavior — awaiting student-authored criterion
 
 <!-- YOU WRITE THIS ONE TOO.
 
