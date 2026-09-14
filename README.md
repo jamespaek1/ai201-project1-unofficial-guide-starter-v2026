@@ -1,6 +1,8 @@
 # The Unofficial Guide
 
-<!-- Replace this line with your name and which corpus you picked. -->
+James Paek · `campus_life` · Week 1
+
+Implementation assistance: Codex. Work is being recorded as it is performed.
 
 > **This file is your submission.** Fill it in as you go — most sections get
 > written during the milestone that produces them, not at the end.
