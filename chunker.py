@@ -1,25 +1,8 @@
-"""
-Stage 2 of the pipeline: splitting documents into chunks.
+"""Stage 2: title-preserving paragraph chunks for the campus_life posts.
 
-⚠️ THIS IS THE FILE YOU CHANGE IN MILESTONE 3.
-
-`split_documents` below is deliberately plain. It cuts every document into
-fixed-size pieces with a fixed overlap and pays no attention to where sentences
-or paragraphs end. It works, and it is not good.
-
-On a corpus of short posts it may not cut anything at all: `campus_life` comes
-out as 88 documents and 88 chunks, because almost nothing in it reaches 800
-characters. That is the baseline, not a bug — Milestone 3 is where you decide
-whether one post should stay one chunk.
-
-Your job in Milestone 3 is to replace the *body* of `split_documents` with a
-strategy that fits the documents you actually read in Milestone 1. Keep the
-name and the shape of what it returns — the rest of the pipeline calls it, and
-your README has to name the function that produced your chunks.
-
-If you get stuck for 30 minutes, `fallback_split` is the original. Switch back
-to it, write down what you saw, and move on. That's a real observation about
-your pipeline, not giving up.
+`split_documents` is the Milestone 3 replacement. It packs intact paragraphs
+under a repeated source title, with a soft size target and no body overlap.
+`fallback_split` keeps the starter's original fixed-window strategy available.
 """
 
 from dataclasses import dataclass
@@ -82,22 +65,52 @@ def fallback_split(
 
 def split_documents(documents: list[Document]) -> list[Chunk]:
     """
-    Split documents into chunks. ⚠️ REPLACE THE BODY OF THIS IN MILESTONE 3.
+    Pack whole campus-post paragraphs, repeating their identifying title.
 
-    Right now it just calls the fallback. That is the plain, generic behaviour
-    the brief is talking about.
-
-    When you write your own strategy, set `produced_by` to
-    "chunker.py::split_documents" so your README's Sample Chunks section names
-    the right function. `app.py chunks` prints that string for you.
-
-    Things worth thinking about before you write any code:
-      - Are your documents short posts or long guides?
-      - Is the useful information in one sentence, or spread over a paragraph?
-      - Would splitting on paragraph breaks keep more thoughts intact than
-        splitting on a character count?
+    CHUNK_SIZE is a soft limit: a single paragraph is never cut to meet it.
+    There is no body overlap. Short posts stay whole; longer posts split only
+    at existing blank lines, and every output retains its source and producer.
     """
-    return fallback_split(documents)
+    if config.CHUNK_SIZE <= 0:
+        raise ValueError("CHUNK_SIZE must be positive")
+
+    chunks: list[Chunk] = []
+    for doc in documents:
+        paragraphs = [p.strip() for p in doc.text.split("\n\n") if p.strip()]
+        if not paragraphs:
+            continue
+
+        # The selected corpus uses a one-line title separated from its body.
+        # An ordinary untitled, multi-line paragraph remains ordinary content.
+        has_title = len(paragraphs) > 1 and "\n" not in paragraphs[0]
+        title = paragraphs[0] if has_title else ""
+        body = paragraphs[1:] if has_title else paragraphs
+        prefix = title + "\n\n" if title else ""
+        pending: list[str] = []
+        index = 0
+
+        for paragraph in body:
+            candidate = prefix + "\n\n".join([*pending, paragraph])
+            if pending and len(candidate) > config.CHUNK_SIZE:
+                chunks.append(Chunk(
+                    text=prefix + "\n\n".join(pending),
+                    source=doc.source,
+                    index=index,
+                    produced_by="chunker.py::split_documents",
+                ))
+                index += 1
+                pending = []
+            pending.append(paragraph)
+
+        if pending:
+            chunks.append(Chunk(
+                text=prefix + "\n\n".join(pending),
+                source=doc.source,
+                index=index,
+                produced_by="chunker.py::split_documents",
+            ))
+
+    return chunks
 
 
 def describe(chunks: list[Chunk]) -> str:

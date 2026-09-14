@@ -32,55 +32,86 @@ Implementation assistance: Codex. Work is being recorded as it is performed.
 
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size:** 350 characters as a soft target, including the repeated title.
+**Overlap:** 0 body characters; repeat the source title on every chunk.
 
-<!-- What about YOUR documents made you pick these numbers? Short posts and
-     long sectioned guides don't want the same chunking, and "800 seemed
-     reasonable" earns nothing. Point at something you noticed when you read
-     the documents in Milestone 1.
+The 88 campus posts average 317 characters and range from 178 to 549. Kestrel
+Commons separates queue advice from hours/prices, and CS 210 separates
+assessment from workload and lab advice. I chose 350 so most brief posts stay
+whole while longer posts can separate at these existing paragraph boundaries.
+The housing lottery's 373-character body paragraph qualifies how priority
+works for different years; keeping it whole matters more than forcing the
+350-character target.
 
-     If you changed your mind partway through, say so and say why. That's worth
-     more than pretending you got it right first time.
+`chunker.py::split_documents` packs complete paragraphs beneath the title.
+It never cuts a sentence or emits a title-only tail from a post with a body.
+A single paragraph may exceed the target, explicitly preserving that thought.
+There is no body overlap because complete paragraphs already retain the
+sentences around a fact, and repeated body text would compete with distinct
+facts in the five retrieved slots. The title repeats so a paragraph about
+"the final" still identifies CS 210 when read alone.
 
-     Milestone 3. -->
+This decision was written before implementing the replacement. The starter's
+800/120 configuration made 88 chunks, because no campus post reaches 800
+characters. The replacement is intended to separate longer multi-topic posts;
+its retrieval quality will be evaluated rather than assumed.
+
+Observed output: 115 chunks, 248 characters on average (shortest 91, longest 397), produced by chunker.py::split_documents. The title-inclusive maximum of
+397 is the intentionally unsplit housing-lottery explanation. The shortest
+chunk is 91 characters and contains a complete fact, not a sliced tail.
+Seven unit tests passed, including exact body-paragraph preservation across all
+88 sources. These are implementation checks, not Week 2 acceptance verdicts.
 
 ## Sample Chunks
 
-<!-- Five chunks, pasted as text. Label each one and name the file it came from
-     AND the function that produced it — the grader checks your code against
-     what you claim here.
+Copied from `python app.py chunks -n 5`; raw output is in
+[`results/week1_chunks.txt`](results/week1_chunks.txt).
 
-     `python app.py chunks -n 5` prints all three for you. Copy them straight
-     across.
+**Chunk 1** — source: `admin_add_drop_deadline.txt#0` — produced by: `chunker.py::split_documents`
 
-     Milestone 3. -->
+```text
+On the add/drop deadline
 
-**Chunk 1** — source: `` — produced by: ``
-
-```
+You can add a course through the end of the second week. Dropping is a longer window — through the end of week six — but a drop after week two shows as a W on your transcript. Nothing anywhere on the registrar's site says this plainly, and students find out from each other.
 ```
 
-**Chunk 2** — source: `` — produced by: ``
+**Chunk 2** — source: `course_cs_210_exams.txt#0` — produced by: `chunker.py::split_documents`
 
-```
-```
+```text
+CS 210 Data Structures — assessment
 
-**Chunk 3** — source: `` — produced by: ``
+Two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.
 
-```
-```
-
-**Chunk 4** — source: `` — produced by: ``
-
-```
+Do the labs even though they're only 10% — the exams reuse the lab problems.
 ```
 
-**Chunk 5** — source: `` — produced by: ``
+**Chunk 3** — source: `course_phys_130.txt#1` — produced by: `chunker.py::split_documents`
 
-```
+```text
+PHYS 130 Mechanics
+
+The one piece of advice: the lab practical is worth 20% and almost nobody prepares for it.
 ```
 
+**Chunk 4** — source: `dining_the_ridgeway_cafe_followup.txt#1` — produced by: `chunker.py::split_documents`
+
+```text
+Re: The Ridgeway Café
+
+Also worth saying: seating is tight; about 40 seats for a building of 900. Nobody tells you this at orientation.
+```
+
+**Chunk 5** — source: `housing_morrow_house.txt#0` — produced by: `chunker.py::split_documents`
+
+```text
+Morrow House — what it's actually like
+
+Just finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.
+
+The good: cheapest housing tier by about $900 a year, and the singles are real singles.
+
+The bad: known damp problem on the ground floor; two rooms were taken offline in 2024.
+```
 ## Sample Answer
 
 <!-- One complete question and answer, pasted as text, with the source line

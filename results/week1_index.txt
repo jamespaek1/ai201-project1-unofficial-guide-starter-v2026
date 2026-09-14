@@ -1,0 +1,7 @@
+Corpus: campus_life
+  loaded   88 documents, 27,908 characters, ~317 characters per document
+  chunked  115 chunks, 248 characters on average (shortest 91, longest 397), produced by chunker.py::split_documents
+  embedding 115 chunks (first run downloads the model)...
+  stored   115 chunks in 6.2s
+
+Ready. Try: python app.py ask "your question here"
