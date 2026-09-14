@@ -4,11 +4,11 @@ James Paek · `campus_life` · Week 1
 
 Implementation assistance: Codex. Work is being recorded as it is performed.
 
-**Status:** The local index, custom chunker, retrieval calibration, refusal
-checks, and real generated sample answer are complete. All 10 environment
-checks pass, including a real Gemini API call. Criteria 4 and 5 await
-student-authored targets, as required by the Week 1 brief. No Week 2 evaluation
-has been run.
+**Week 1:** Implementation, five acceptance criteria, and all five submission
+sections are complete. The repository includes real chunk, retrieval, refusal,
+and generation evidence, plus more than four milestone commits. The formal
+Week 2 evaluation has not been run. AI assistance and the timing of the two
+custom criteria are disclosed below and in [`criteria.md`](criteria.md).
 
 Setup and commands: [`RUNNING.md`](RUNNING.md). That starter reference is unchanged.
 
@@ -203,14 +203,22 @@ titles, and removes body overlap; its tests verify that no body paragraph is
 lost or duplicated. These changes came from the separate dining/course
 paragraphs and the single qualified housing-lottery explanation.
 
-**2. Clarifying the assignment scope.** The follow-up request supplied the
-Week 1 CodePath course URL. Codex initially interpreted the repository's
-Week 1/Week 2 template as requiring both weeks. After reading the course's
-project tab, the work was limited to Week 1; the before/after acceptance runs
-were deferred, and the two custom criteria were left for the student to
-write because Milestone 2 explicitly requires student authorship. After the
-API credential was added locally, Codex verified the environment and captured
-a real model response for the sample answer; no simulated output was used.
+**2. Scope and acceptance criteria.** After the initial request, the Week 1
+CodePath link clarified that the task was the build and criteria, rather than
+both weeks of the starter template. The work was narrowed to Week 1. When asked
+to finish the remaining criteria, Codex drafted a strict chunk-focus target
+and a complete-answer target. The answer target was made more specific than a
+single `expects` keyword: its table requires every price, time window, and
+qualification requested by each question, with supporting sources. The
+chunk-focus target deliberately goes beyond the existing content-preservation
+tests, since an intact chunk can still mix unrelated housing topics.
+
+The implementation and custom criteria were drafted by Codex at the user's
+request. Criteria 4–5 were completed after the Week 1 observations and sample
+answer; the commit history and `criteria.md` disclose that timing. No
+independent student authorship or earlier chronology is claimed. After the
+API credential was added locally, the sample was captured from real model
+calls rather than simulated output.
 
 No stretch feature is claimed.
 
@@ -218,117 +226,6 @@ No stretch feature is claimed.
 
 # Week 2
 
-<!-- These sections get ADDED to what's already above. Don't delete or rewrite
-     week 1 — the point is that someone can see what you said before you knew
-     how it went. -->
-
-## Run Log — Before
-
-<!-- Your five criteria, three runs each. `python run_eval.py --label before`
-     runs the questions, puts the OUT_OF_SCOPE ones through the gate, and
-     writes it all into results/ for you. Targets come from criteria.md; the
-     verdict column is your call.
-
-     Criterion 3 is measured in one deterministic pass rather than three, so
-     the same number goes in all three run columns. That's correct, not lazy.
-
-     Milestone 1. -->
-
-| Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
-|---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
-
-<!-- Underneath, paste the REAL output for each criterion from one of your
-     runs — the actual text your system produced, not a description of it.
-     Name the file and function that produced it. -->
-
-## Verdicts
-
-<!-- MET or MISSED for each of the five, against the target you wrote last
-     week — not a new one. Plus a sentence on how you decided. That sentence
-     matters most where it was close.
-
-     If your target said 4 of 5 and your runs came out 4, 3, 4, that's a MISS.
-     The target has to hold, not show up occasionally.
-
-     Milestone 2. -->
-
-| # | Criterion | Verdict | How I decided |
-|---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
-
-## Diagnoses
-
-<!-- For each miss: which stage caused it, and how. The stage alone isn't
-     enough — you need the mechanism.
-
-     Not a diagnosis: "Question 3 didn't work."
-     A diagnosis:     "Question 3 asks about laundry costs. The answer is in
-                       one sentence that got split across two chunks, so
-                       neither chunk on its own contains it."
-
-     The five stages: loading → chunking → embedding → retrieval → generation.
-
-     Look for a pattern. If three misses all ask about numbers, that's one
-     problem, not three.
-
-     Missed nothing? Say so, then say honestly whether your targets were set
-     low, and which one you'd tighten and to what.
-
-     Milestone 3. -->
-
-## The Improvement
-
-**What I changed:**
-
-**Why I picked it:**
-
-<!-- Connect it to a specific diagnosis above in one sentence. If you can't,
-     you picked a fix because it sounded impressive. -->
-
-### Run Log — After
-
-<!-- Same format, same five criteria, three runs each.
-     `python run_eval.py --label after` -->
-
-| Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
-|---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
-
-**Did it help?**
-
-<!-- Say plainly whether it did, and how you know. If it made things worse,
-     say that — a change that backfired, honestly reported, earns full credit
-     and is more interesting than one that worked. What matters is that you can
-     tell.
-
-     Milestone 4. -->
-
-## What's Still Broken
-
-<!-- For each criterion still missed after your fix: what you'd do about it,
-     and why you stopped where you did.
-
-     "I ran out of time" is fine if it's true. Pretending nothing is left is
-     not.
-
-     Milestone 5. -->
-
-## What I'd Do Differently
-
-<!-- Knowing what you know now — which of your five criteria would you write
-     differently, and why?
-
-     Milestone 5. -->
+Reserved for the next unit. The three-run before/after evaluation, verdicts,
+diagnoses, and improvement will be added here using the existing criteria and
+commit history. No Week 2 scores are claimed in this Week 1 submission.
