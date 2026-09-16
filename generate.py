@@ -253,17 +253,27 @@ def generate(prompt: str, system: str | None = None, cache: bool = True) -> str:
                 or "resource" in message and "exhaust" in message
                 or "rate" in message and "limit" in message
             )
-            if not rate_limited:
+            # Gemini reports temporary overload as HTTP 503. Treat that
+            # explicit status as retryable within the existing attempt budget;
+            # permission/authentication and other failures still surface at once.
+            service_unavailable = getattr(exc, "code", None) == 503
+            if not (rate_limited or service_unavailable):
                 raise
             backoff = 2 ** attempt
+            reason = "service unavailable" if service_unavailable else "rate limit"
             print(
-                f"  [rate limit] service pushed back. Retrying in {backoff}s "
+                f"  [{reason}] service pushed back. Retrying in {backoff}s "
                 f"(attempt {attempt + 1} of {config.MAX_RETRIES}).",
                 file=sys.stderr,
                 flush=True,
             )
             time.sleep(backoff)
 
+    if getattr(last_error, "code", None) == 503:
+        raise RuntimeError(
+            f"Service still unavailable after {config.MAX_RETRIES} attempts. "
+            f"Try again later.\nLast error: {last_error}"
+        ) from last_error
     raise RuntimeError(
         f"Still rate limited after {config.MAX_RETRIES} attempts. Wait a "
         f"minute and try again — your key is fine.\nLast error: {last_error}"
