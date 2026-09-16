@@ -226,6 +226,20 @@ No stretch feature is claimed.
 
 # Week 2
 
-Reserved for the next unit. The three-run before/after evaluation, verdicts,
-diagnoses, and improvement will be added here using the existing criteria and
-commit history. No Week 2 scores are claimed in this Week 1 submission.
+## Evaluation protocol
+
+The Week 1 targets in `criteria.md` and the ten questions in `questions.py`
+remain unchanged. Each configuration gets three uncached trials for each of
+the five in-corpus questions, plus one deterministic pass over all five
+out-of-scope questions and the five samples from `python app.py chunks -n 5`.
+A target must hold in every run. An API error counts as a failed answer, never
+as an accepted response. No stretch feature is planned.
+
+`python tools/evaluate_week2.py --label before` invokes the existing
+`run_eval.py` pipeline and report writer. It also preserves every retrieved
+chunk, complete generated answer, source label, distance, gate decision,
+request count, configuration, and corpus/criteria hash in JSON. The wrapper
+records provider exceptions explicitly and continues the scheduled trials;
+it does not change prompts or model behavior. Verdicts will be assigned by
+reading the original required-facts table, not by keyword matches. The same
+instrumentation will be used after the one improvement.
