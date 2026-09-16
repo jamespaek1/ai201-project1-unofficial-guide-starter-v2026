@@ -1,0 +1,820 @@
+{
+  "started_at": "2026-09-16T22:55:01.780685+00:00",
+  "git_commit": "0b4e4e6ce6d7de0a73e4bf6a7de8e41dc72e4058",
+  "label": "before",
+  "model": "gemini-3.5-flash-lite",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "corpus": "campus_life",
+  "corpus_sha256": "542ea4d60aebcd3c3f20551d6fa04abf8c027f617b15f5411e2115767ae79210",
+  "criteria_sha256": "1b74e626abb73ce3ee73a027022db37868bc2b3779c1e5ed2992c9573d6a17ff",
+  "top_k": 5,
+  "threshold": 0.65,
+  "chunk_size": 350,
+  "cache": false,
+  "index_verified_against_chunker": true,
+  "chunk_count": 115,
+  "sampled_chunks": [
+    {
+      "text": "On the add/drop deadline\n\nYou can add a course through the end of the second week. Dropping is a longer window — through the end of week six — but a drop after week two shows as a W on your transcript. Nothing anywhere on the registrar's site says this plainly, and students find out from each other.",
+      "source": "admin_add_drop_deadline.txt",
+      "index": 0,
+      "produced_by": "chunker.py::split_documents"
+    },
+    {
+      "text": "CS 210 Data Structures — assessment\n\nTwo midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.\n\nDo the labs even though they're only 10% — the exams reuse the lab problems.",
+      "source": "course_cs_210_exams.txt",
+      "index": 0,
+      "produced_by": "chunker.py::split_documents"
+    },
+    {
+      "text": "PHYS 130 Mechanics\n\nThe one piece of advice: the lab practical is worth 20% and almost nobody prepares for it.",
+      "source": "course_phys_130.txt",
+      "index": 1,
+      "produced_by": "chunker.py::split_documents"
+    },
+    {
+      "text": "Re: The Ridgeway Café\n\nAlso worth saying: seating is tight; about 40 seats for a building of 900. Nobody tells you this at orientation.",
+      "source": "dining_the_ridgeway_cafe_followup.txt",
+      "index": 1,
+      "produced_by": "chunker.py::split_documents"
+    },
+    {
+      "text": "Morrow House — what it's actually like\n\nJust finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.\n\nThe good: cheapest housing tier by about $900 a year, and the singles are real singles.\n\nThe bad: known damp problem on the ground floor; two rooms were taken offline in 2024.",
+      "source": "housing_morrow_house.txt",
+      "index": 0,
+      "produced_by": "chunker.py::split_documents"
+    }
+  ],
+  "trials": [
+    {
+      "question": "How does housing lottery priority differ for rising sophomores versus juniors and seniors?",
+      "run": 1,
+      "answer": "Rising sophomores get a number drawn at random in the housing lottery, whereas juniors and seniors are ordered by accumulated credit hours first, with random tie-breaking used only when necessary. \n\nSource: admin_housing_lottery.txt",
+      "error": null,
+      "results": [
+        {
+          "text": "On the housing lottery\n\nThe housing lottery is not random in the way most people assume. Rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly. That means a senior who took summer courses reliably beats a senior who didn't. Numbers come out the second week of March and selection runs over four evenings.",
+          "source": "admin_housing_lottery.txt",
+          "label": "admin_housing_lottery.txt#0",
+          "distance": 0.19165140390396118,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Tamsin Court — what it's actually like\n\nI lived here my sophomore year. Built 2021. Rooms are studio apartments with private kitchen and bathroom.\n\nThe good: the most independent housing on campus, and the only option with a full kitchen.\n\nThe bad: the most expensive tier by a wide margin, and isolating if you're new.",
+          "source": "housing_tamsin_court.txt",
+          "label": "housing_tamsin_court.txt#0",
+          "distance": 0.6745032709727905,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "STAT 150 Applied Statistics — assessment\n\nThree equally weighted midterms, no final. No curve, but the lowest midterm is dropped.\n\nThe dropped midterm makes the first one low-stakes; use it to learn the format.",
+          "source": "course_stat_150_exams.txt",
+          "label": "course_stat_150_exams.txt#0",
+          "distance": 0.7003940939903259,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Registration and your adviser\n\nYou need an adviser hold lifted before you can register, and advisers get busy in the week before registration opens. Book two weeks out.\n\nRegistration times are staggered by credit hours, same as the housing lottery. Popular courses fill in the first two days.",
+          "source": "advising_registration.txt",
+          "label": "advising_registration.txt#0",
+          "distance": 0.7021344304084778,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "STAT 150 Applied Statistics\n\nThe one piece of advice: the dropped midterm makes the first one low-stakes; use it to learn the format.",
+          "source": "course_stat_150.txt",
+          "label": "course_stat_150.txt#1",
+          "distance": 0.7161474227905273,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.19165140390396118,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "How does housing lottery priority differ for rising sophomores versus juniors and seniors?",
+      "run": 2,
+      "answer": "Rising sophomores get a number drawn at random in the housing lottery, whereas juniors and seniors are ordered by accumulated credit hours first, with random tie-breaks used only afterwards. \n\nSource: admin_housing_lottery.txt",
+      "error": null,
+      "results": [
+        {
+          "text": "On the housing lottery\n\nThe housing lottery is not random in the way most people assume. Rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly. That means a senior who took summer courses reliably beats a senior who didn't. Numbers come out the second week of March and selection runs over four evenings.",
+          "source": "admin_housing_lottery.txt",
+          "label": "admin_housing_lottery.txt#0",
+          "distance": 0.19165140390396118,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Tamsin Court — what it's actually like\n\nI lived here my sophomore year. Built 2021. Rooms are studio apartments with private kitchen and bathroom.\n\nThe good: the most independent housing on campus, and the only option with a full kitchen.\n\nThe bad: the most expensive tier by a wide margin, and isolating if you're new.",
+          "source": "housing_tamsin_court.txt",
+          "label": "housing_tamsin_court.txt#0",
+          "distance": 0.6745032709727905,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "STAT 150 Applied Statistics — assessment\n\nThree equally weighted midterms, no final. No curve, but the lowest midterm is dropped.\n\nThe dropped midterm makes the first one low-stakes; use it to learn the format.",
+          "source": "course_stat_150_exams.txt",
+          "label": "course_stat_150_exams.txt#0",
+          "distance": 0.7003940939903259,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Registration and your adviser\n\nYou need an adviser hold lifted before you can register, and advisers get busy in the week before registration opens. Book two weeks out.\n\nRegistration times are staggered by credit hours, same as the housing lottery. Popular courses fill in the first two days.",
+          "source": "advising_registration.txt",
+          "label": "advising_registration.txt#0",
+          "distance": 0.7021344304084778,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "STAT 150 Applied Statistics\n\nThe one piece of advice: the dropped midterm makes the first one low-stakes; use it to learn the format.",
+          "source": "course_stat_150.txt",
+          "label": "course_stat_150.txt#1",
+          "distance": 0.7161474227905273,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.19165140390396118,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "How does housing lottery priority differ for rising sophomores versus juniors and seniors?",
+      "run": 3,
+      "answer": "Rising sophomores get a number drawn at random in the housing lottery, whereas juniors and seniors are ordered by accumulated credit hours first, with a random tie-break used only if needed. \n\nSource: admin_housing_lottery.txt",
+      "error": null,
+      "results": [
+        {
+          "text": "On the housing lottery\n\nThe housing lottery is not random in the way most people assume. Rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly. That means a senior who took summer courses reliably beats a senior who didn't. Numbers come out the second week of March and selection runs over four evenings.",
+          "source": "admin_housing_lottery.txt",
+          "label": "admin_housing_lottery.txt#0",
+          "distance": 0.19165140390396118,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Tamsin Court — what it's actually like\n\nI lived here my sophomore year. Built 2021. Rooms are studio apartments with private kitchen and bathroom.\n\nThe good: the most independent housing on campus, and the only option with a full kitchen.\n\nThe bad: the most expensive tier by a wide margin, and isolating if you're new.",
+          "source": "housing_tamsin_court.txt",
+          "label": "housing_tamsin_court.txt#0",
+          "distance": 0.6745032709727905,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "STAT 150 Applied Statistics — assessment\n\nThree equally weighted midterms, no final. No curve, but the lowest midterm is dropped.\n\nThe dropped midterm makes the first one low-stakes; use it to learn the format.",
+          "source": "course_stat_150_exams.txt",
+          "label": "course_stat_150_exams.txt#0",
+          "distance": 0.7003940939903259,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Registration and your adviser\n\nYou need an adviser hold lifted before you can register, and advisers get busy in the week before registration opens. Book two weeks out.\n\nRegistration times are staggered by credit hours, same as the housing lottery. Popular courses fill in the first two days.",
+          "source": "advising_registration.txt",
+          "label": "advising_registration.txt#0",
+          "distance": 0.7021344304084778,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "STAT 150 Applied Statistics\n\nThe one piece of advice: the dropped midterm makes the first one low-stakes; use it to learn the format.",
+          "source": "course_stat_150.txt",
+          "label": "course_stat_150.txt#1",
+          "distance": 0.7161474227905273,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.19165140390396118,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "What are the separate wash and dry prices in Morrow House, and which payment methods work?",
+      "run": 1,
+      "answer": null,
+      "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+      "results": [
+        {
+          "text": "Laundry in Morrow House\n\nMachines take $1.50 wash, $1.25 dry, coin or card. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_morrow_house_laundry.txt",
+          "label": "housing_morrow_house_laundry.txt#0",
+          "distance": 0.2522556781768799,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Morrow House — what it's actually like\n\nLaundry costs $1.50 wash, $1.25 dry, coin or card. On noise: loud until about 1am on weekends, no enforced quiet hours.",
+          "source": "housing_morrow_house.txt",
+          "label": "housing_morrow_house.txt#1",
+          "distance": 0.29708343744277954,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Old Brewhouse\n\nMachines take $1.50 wash, $1.50 dry, coin only, and the machines are old. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_old_brewhouse_laundry.txt",
+          "label": "housing_old_brewhouse_laundry.txt#0",
+          "distance": 0.4197224974632263,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Innisfree Hall\n\nMachines take $1.75 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_innisfree_hall_laundry.txt",
+          "label": "housing_innisfree_hall_laundry.txt#0",
+          "distance": 0.4386637806892395,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Calder Annexe — what it's actually like\n\nLaundry costs $2.00 wash, $1.75 dry, app-based. On noise: depends entirely on your cluster; there's no building-wide pattern.",
+          "source": "housing_calder_annexe.txt",
+          "label": "housing_calder_annexe.txt#1",
+          "distance": 0.4506523013114929,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.2522556781768799,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "What are the separate wash and dry prices in Morrow House, and which payment methods work?",
+      "run": 2,
+      "answer": "In Morrow House, the laundry costs $1.50 for a wash and $1.25 for a dry, and you can pay using either coin or card. \n\nSources: `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt`",
+      "error": null,
+      "results": [
+        {
+          "text": "Laundry in Morrow House\n\nMachines take $1.50 wash, $1.25 dry, coin or card. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_morrow_house_laundry.txt",
+          "label": "housing_morrow_house_laundry.txt#0",
+          "distance": 0.2522556781768799,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Morrow House — what it's actually like\n\nLaundry costs $1.50 wash, $1.25 dry, coin or card. On noise: loud until about 1am on weekends, no enforced quiet hours.",
+          "source": "housing_morrow_house.txt",
+          "label": "housing_morrow_house.txt#1",
+          "distance": 0.29708343744277954,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Old Brewhouse\n\nMachines take $1.50 wash, $1.50 dry, coin only, and the machines are old. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_old_brewhouse_laundry.txt",
+          "label": "housing_old_brewhouse_laundry.txt#0",
+          "distance": 0.4197224974632263,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Innisfree Hall\n\nMachines take $1.75 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_innisfree_hall_laundry.txt",
+          "label": "housing_innisfree_hall_laundry.txt#0",
+          "distance": 0.4386637806892395,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Calder Annexe — what it's actually like\n\nLaundry costs $2.00 wash, $1.75 dry, app-based. On noise: depends entirely on your cluster; there's no building-wide pattern.",
+          "source": "housing_calder_annexe.txt",
+          "label": "housing_calder_annexe.txt#1",
+          "distance": 0.4506523013114929,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.2522556781768799,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "What are the separate wash and dry prices in Morrow House, and which payment methods work?",
+      "run": 3,
+      "answer": "In Morrow House, laundry costs $1.50 for a wash and $1.25 for a dry, and you can pay with either coin or card. \n\nSources: \n- `housing_morrow_house_laundry.txt`\n- `housing_morrow_house.txt`",
+      "error": null,
+      "results": [
+        {
+          "text": "Laundry in Morrow House\n\nMachines take $1.50 wash, $1.25 dry, coin or card. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_morrow_house_laundry.txt",
+          "label": "housing_morrow_house_laundry.txt#0",
+          "distance": 0.2522556781768799,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Morrow House — what it's actually like\n\nLaundry costs $1.50 wash, $1.25 dry, coin or card. On noise: loud until about 1am on weekends, no enforced quiet hours.",
+          "source": "housing_morrow_house.txt",
+          "label": "housing_morrow_house.txt#1",
+          "distance": 0.29708343744277954,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Old Brewhouse\n\nMachines take $1.50 wash, $1.50 dry, coin only, and the machines are old. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_old_brewhouse_laundry.txt",
+          "label": "housing_old_brewhouse_laundry.txt#0",
+          "distance": 0.4197224974632263,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Laundry in Innisfree Hall\n\nMachines take $1.75 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.\n\nBest time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.",
+          "source": "housing_innisfree_hall_laundry.txt",
+          "label": "housing_innisfree_hall_laundry.txt#0",
+          "distance": 0.4386637806892395,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Calder Annexe — what it's actually like\n\nLaundry costs $2.00 wash, $1.75 dry, app-based. On noise: depends entirely on your cluster; there's no building-wide pattern.",
+          "source": "housing_calder_annexe.txt",
+          "label": "housing_calder_annexe.txt#1",
+          "distance": 0.4506523013114929,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.2522556781768799,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "How long is the Kestrel Commons wait between 12:15 and 1:00, and before 11:45?",
+      "run": 1,
+      "answer": "The wait time at Kestrel Commons is 20 to 25 minutes between 12:15 and 1:00, and under 5 minutes before 11:45 (from dining_kestrel_commons.txt).",
+      "error": null,
+      "results": [
+        {
+          "text": "Re: Kestrel Commons\n\nAdding to what people have said about Kestrel Commons. The wait figure of 20 to 25 minutes between 12:15 and 1:00 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.\n\nAlso worth saying: the salad bar wilts after 1:30. Nobody tells you this at orientation.",
+          "source": "dining_kestrel_commons_followup.txt",
+          "label": "dining_kestrel_commons_followup.txt#0",
+          "distance": 0.2292608618736267,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Kestrel Commons\n\nHours are 7:00am to 9:00pm weekdays, 9:00am to 8:00pm weekends. Costs one meal swipe, or $12.50 cash.",
+          "source": "dining_kestrel_commons.txt",
+          "label": "dining_kestrel_commons.txt#1",
+          "distance": 0.29628902673721313,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Re: Halden Hall\n\nAdding to what people have said about Halden Hall. The wait figure of rarely more than 8 minutes matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.\n\nAlso worth saying: closes at 7:00pm, which catches people out. Nobody tells you this at orientation.",
+          "source": "dining_halden_hall_followup.txt",
+          "label": "dining_halden_hall_followup.txt#0",
+          "distance": 0.431490421295166,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Re: The Ridgeway Café\n\nAdding to what people have said about The Ridgeway Café. The wait figure of 10 to 15 minutes at 12:30 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.",
+          "source": "dining_the_ridgeway_cafe_followup.txt",
+          "label": "dining_the_ridgeway_cafe_followup.txt#0",
+          "distance": 0.4406765103340149,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Kestrel Commons\n\nI'm a junior and I've done this twice now. Wait times: 20 to 25 minutes between 12:15 and 1:00, under 5 minutes before 11:45. The thing worth going for is the stir-fry station, made to order. The thing to know is that the salad bar wilts after 1:30.",
+          "source": "dining_kestrel_commons.txt",
+          "label": "dining_kestrel_commons.txt#0",
+          "distance": 0.4505150318145752,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.2292608618736267,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "How long is the Kestrel Commons wait between 12:15 and 1:00, and before 11:45?",
+      "run": 2,
+      "answer": "The wait time at Kestrel Commons is 20 to 25 minutes between 12:15 and 1:00, and under 5 minutes before 11:45 (from dining_kestrel_commons.txt).",
+      "error": null,
+      "results": [
+        {
+          "text": "Re: Kestrel Commons\n\nAdding to what people have said about Kestrel Commons. The wait figure of 20 to 25 minutes between 12:15 and 1:00 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.\n\nAlso worth saying: the salad bar wilts after 1:30. Nobody tells you this at orientation.",
+          "source": "dining_kestrel_commons_followup.txt",
+          "label": "dining_kestrel_commons_followup.txt#0",
+          "distance": 0.2292608618736267,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Kestrel Commons\n\nHours are 7:00am to 9:00pm weekdays, 9:00am to 8:00pm weekends. Costs one meal swipe, or $12.50 cash.",
+          "source": "dining_kestrel_commons.txt",
+          "label": "dining_kestrel_commons.txt#1",
+          "distance": 0.29628902673721313,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Re: Halden Hall\n\nAdding to what people have said about Halden Hall. The wait figure of rarely more than 8 minutes matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.\n\nAlso worth saying: closes at 7:00pm, which catches people out. Nobody tells you this at orientation.",
+          "source": "dining_halden_hall_followup.txt",
+          "label": "dining_halden_hall_followup.txt#0",
+          "distance": 0.431490421295166,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Re: The Ridgeway Café\n\nAdding to what people have said about The Ridgeway Café. The wait figure of 10 to 15 minutes at 12:30 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.",
+          "source": "dining_the_ridgeway_cafe_followup.txt",
+          "label": "dining_the_ridgeway_cafe_followup.txt#0",
+          "distance": 0.4406765103340149,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Kestrel Commons\n\nI'm a junior and I've done this twice now. Wait times: 20 to 25 minutes between 12:15 and 1:00, under 5 minutes before 11:45. The thing worth going for is the stir-fry station, made to order. The thing to know is that the salad bar wilts after 1:30.",
+          "source": "dining_kestrel_commons.txt",
+          "label": "dining_kestrel_commons.txt#0",
+          "distance": 0.4505150318145752,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.2292608618736267,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "How long is the Kestrel Commons wait between 12:15 and 1:00, and before 11:45?",
+      "run": 3,
+      "answer": "The wait time at Kestrel Commons is 20 to 25 minutes between 12:15 and 1:00, and under 5 minutes before 11:45 (from dining_kestrel_commons.txt).",
+      "error": null,
+      "results": [
+        {
+          "text": "Re: Kestrel Commons\n\nAdding to what people have said about Kestrel Commons. The wait figure of 20 to 25 minutes between 12:15 and 1:00 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.\n\nAlso worth saying: the salad bar wilts after 1:30. Nobody tells you this at orientation.",
+          "source": "dining_kestrel_commons_followup.txt",
+          "label": "dining_kestrel_commons_followup.txt#0",
+          "distance": 0.2292608618736267,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Kestrel Commons\n\nHours are 7:00am to 9:00pm weekdays, 9:00am to 8:00pm weekends. Costs one meal swipe, or $12.50 cash.",
+          "source": "dining_kestrel_commons.txt",
+          "label": "dining_kestrel_commons.txt#1",
+          "distance": 0.29628902673721313,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Re: Halden Hall\n\nAdding to what people have said about Halden Hall. The wait figure of rarely more than 8 minutes matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.\n\nAlso worth saying: closes at 7:00pm, which catches people out. Nobody tells you this at orientation.",
+          "source": "dining_halden_hall_followup.txt",
+          "label": "dining_halden_hall_followup.txt#0",
+          "distance": 0.431490421295166,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Re: The Ridgeway Café\n\nAdding to what people have said about The Ridgeway Café. The wait figure of 10 to 15 minutes at 12:30 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.",
+          "source": "dining_the_ridgeway_cafe_followup.txt",
+          "label": "dining_the_ridgeway_cafe_followup.txt#0",
+          "distance": 0.4406765103340149,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Kestrel Commons\n\nI'm a junior and I've done this twice now. Wait times: 20 to 25 minutes between 12:15 and 1:00, under 5 minutes before 11:45. The thing worth going for is the stir-fry station, made to order. The thing to know is that the salad bar wilts after 1:30.",
+          "source": "dining_kestrel_commons.txt",
+          "label": "dining_kestrel_commons.txt#0",
+          "distance": 0.4505150318145752,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.2292608618736267,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "In CS 210, are the midterms and final curved, and what material are the exams drawn from?",
+      "run": 1,
+      "answer": "In CS 210, the midterms are curved, but the final is not. The exams are drawn from lecture material rather than the textbook. \n\nSources: `course_cs_210_exams.txt` and `course_cs_210.txt`",
+      "error": null,
+      "results": [
+        {
+          "text": "CS 210 Data Structures — assessment\n\nTwo midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.\n\nDo the labs even though they're only 10% — the exams reuse the lab problems.",
+          "source": "course_cs_210_exams.txt",
+          "label": "course_cs_210_exams.txt#0",
+          "distance": 0.21158623695373535,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 210 Data Structures\n\nI'm a junior and I've done this twice now. Format is lecture with weekly labs; slides go up after class, not before. Assessment: two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.\n\nExpect 8 to 10 hours a week outside class.",
+          "source": "course_cs_210.txt",
+          "label": "course_cs_210.txt#0",
+          "distance": 0.3954176902770996,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 340 Databases — assessment\n\nOne midterm and a final, both open-book. Lightly curved, usually two or three points.\n\nStart the term project in week three, not week eight; everyone learns this the hard way.",
+          "source": "course_cs_340_exams.txt",
+          "label": "course_cs_340_exams.txt#0",
+          "distance": 0.4041333794593811,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "ENGL 205 Writing for the Sciences — assessment\n\nNo exams; a portfolio of six revised pieces. Not curved.\n\nThe portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.",
+          "source": "course_engl_205_exams.txt",
+          "label": "course_engl_205_exams.txt#0",
+          "distance": 0.41565245389938354,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 340 Databases\n\nI'm a junior and I've done this twice now. Format is lecture twice a week plus a project that runs the whole term. Assessment: one midterm and a final, both open-book. Lightly curved, usually two or three points.\n\nExpect 6 hours a week early, 15 in the last three weeks when the project lands.",
+          "source": "course_cs_340.txt",
+          "label": "course_cs_340.txt#0",
+          "distance": 0.4457675814628601,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.21158623695373535,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "In CS 210, are the midterms and final curved, and what material are the exams drawn from?",
+      "run": 2,
+      "answer": null,
+      "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+      "results": [
+        {
+          "text": "CS 210 Data Structures — assessment\n\nTwo midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.\n\nDo the labs even though they're only 10% — the exams reuse the lab problems.",
+          "source": "course_cs_210_exams.txt",
+          "label": "course_cs_210_exams.txt#0",
+          "distance": 0.21158623695373535,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 210 Data Structures\n\nI'm a junior and I've done this twice now. Format is lecture with weekly labs; slides go up after class, not before. Assessment: two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.\n\nExpect 8 to 10 hours a week outside class.",
+          "source": "course_cs_210.txt",
+          "label": "course_cs_210.txt#0",
+          "distance": 0.3954176902770996,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 340 Databases — assessment\n\nOne midterm and a final, both open-book. Lightly curved, usually two or three points.\n\nStart the term project in week three, not week eight; everyone learns this the hard way.",
+          "source": "course_cs_340_exams.txt",
+          "label": "course_cs_340_exams.txt#0",
+          "distance": 0.4041333794593811,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "ENGL 205 Writing for the Sciences — assessment\n\nNo exams; a portfolio of six revised pieces. Not curved.\n\nThe portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.",
+          "source": "course_engl_205_exams.txt",
+          "label": "course_engl_205_exams.txt#0",
+          "distance": 0.41565245389938354,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 340 Databases\n\nI'm a junior and I've done this twice now. Format is lecture twice a week plus a project that runs the whole term. Assessment: one midterm and a final, both open-book. Lightly curved, usually two or three points.\n\nExpect 6 hours a week early, 15 in the last three weeks when the project lands.",
+          "source": "course_cs_340.txt",
+          "label": "course_cs_340.txt#0",
+          "distance": 0.4457675814628601,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.21158623695373535,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "In CS 210, are the midterms and final curved, and what material are the exams drawn from?",
+      "run": 3,
+      "answer": "In CS 210, the midterms are curved, but the final is not. The exams are drawn from lecture material rather than the textbook. \n\nSources: `course_cs_210.txt` and `course_cs_210_exams.txt`",
+      "error": null,
+      "results": [
+        {
+          "text": "CS 210 Data Structures — assessment\n\nTwo midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.\n\nDo the labs even though they're only 10% — the exams reuse the lab problems.",
+          "source": "course_cs_210_exams.txt",
+          "label": "course_cs_210_exams.txt#0",
+          "distance": 0.21158623695373535,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 210 Data Structures\n\nI'm a junior and I've done this twice now. Format is lecture with weekly labs; slides go up after class, not before. Assessment: two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.\n\nExpect 8 to 10 hours a week outside class.",
+          "source": "course_cs_210.txt",
+          "label": "course_cs_210.txt#0",
+          "distance": 0.3954176902770996,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 340 Databases — assessment\n\nOne midterm and a final, both open-book. Lightly curved, usually two or three points.\n\nStart the term project in week three, not week eight; everyone learns this the hard way.",
+          "source": "course_cs_340_exams.txt",
+          "label": "course_cs_340_exams.txt#0",
+          "distance": 0.4041333794593811,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "ENGL 205 Writing for the Sciences — assessment\n\nNo exams; a portfolio of six revised pieces. Not curved.\n\nThe portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.",
+          "source": "course_engl_205_exams.txt",
+          "label": "course_engl_205_exams.txt#0",
+          "distance": 0.41565245389938354,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "CS 340 Databases\n\nI'm a junior and I've done this twice now. Format is lecture twice a week plus a project that runs the whole term. Assessment: one midterm and a final, both open-book. Lightly curved, usually two or three points.\n\nExpect 6 hours a week early, 15 in the last three weeks when the project lands.",
+          "source": "course_cs_340.txt",
+          "label": "course_cs_340.txt#0",
+          "distance": 0.4457675814628601,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.21158623695373535,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "When does the library close during term versus reading week?",
+      "run": 1,
+      "answer": null,
+      "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+      "results": [
+        {
+          "text": "Library hours and where to actually sit\n\nOpen until 2am during term, until 10pm during reading week, which is backwards and catches everyone out every single year.\n\nThird floor is silent and enforced. Second floor is quiet in theory. The basement has the only outlets at every seat and is therefore full from about 10am.",
+          "source": "study_library_hours.txt",
+          "label": "study_library_hours.txt#0",
+          "distance": 0.4703996845754693,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Noise levels in Calder Annexe\n\nAsked about this a lot so writing it down. Depends entirely on your cluster; there's no building-wide pattern.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.",
+          "source": "housing_calder_annexe_noise.txt",
+          "label": "housing_calder_annexe_noise.txt#0",
+          "distance": 0.5051690340042114,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "On the library holds\n\nYou can place a hold on a checked-out book and it usually arrives in two to three days. What isn't advertised: the interlibrary system covers eleven other institutions and requests through it take about a week but almost never fail.",
+          "source": "admin_library_holds.txt",
+          "label": "admin_library_holds.txt#0",
+          "distance": 0.5160137414932251,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Noise levels in Morrow House\n\nAsked about this a lot so writing it down. Loud until about 1am on weekends, no enforced quiet hours.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.",
+          "source": "housing_morrow_house_noise.txt",
+          "label": "housing_morrow_house_noise.txt#0",
+          "distance": 0.5241934061050415,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Textbooks without paying full price\n\nThe library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.",
+          "source": "money_textbooks.txt",
+          "label": "money_textbooks.txt#0",
+          "distance": 0.5333077148199334,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.4703996845754693,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "When does the library close during term versus reading week?",
+      "run": 2,
+      "answer": "During term, the library is open until 2am, and during reading week, it closes at 10pm (study_library_hours.txt).",
+      "error": null,
+      "results": [
+        {
+          "text": "Library hours and where to actually sit\n\nOpen until 2am during term, until 10pm during reading week, which is backwards and catches everyone out every single year.\n\nThird floor is silent and enforced. Second floor is quiet in theory. The basement has the only outlets at every seat and is therefore full from about 10am.",
+          "source": "study_library_hours.txt",
+          "label": "study_library_hours.txt#0",
+          "distance": 0.4703996845754693,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Noise levels in Calder Annexe\n\nAsked about this a lot so writing it down. Depends entirely on your cluster; there's no building-wide pattern.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.",
+          "source": "housing_calder_annexe_noise.txt",
+          "label": "housing_calder_annexe_noise.txt#0",
+          "distance": 0.5051690340042114,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "On the library holds\n\nYou can place a hold on a checked-out book and it usually arrives in two to three days. What isn't advertised: the interlibrary system covers eleven other institutions and requests through it take about a week but almost never fail.",
+          "source": "admin_library_holds.txt",
+          "label": "admin_library_holds.txt#0",
+          "distance": 0.5160137414932251,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Noise levels in Morrow House\n\nAsked about this a lot so writing it down. Loud until about 1am on weekends, no enforced quiet hours.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.",
+          "source": "housing_morrow_house_noise.txt",
+          "label": "housing_morrow_house_noise.txt#0",
+          "distance": 0.5241934061050415,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Textbooks without paying full price\n\nThe library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.",
+          "source": "money_textbooks.txt",
+          "label": "money_textbooks.txt#0",
+          "distance": 0.5333077148199334,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.4703996845754693,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    },
+    {
+      "question": "When does the library close during term versus reading week?",
+      "run": 3,
+      "answer": "During term, the library is open until 2am, and during reading week, it is open until 10pm (study_library_hours.txt).",
+      "error": null,
+      "results": [
+        {
+          "text": "Library hours and where to actually sit\n\nOpen until 2am during term, until 10pm during reading week, which is backwards and catches everyone out every single year.\n\nThird floor is silent and enforced. Second floor is quiet in theory. The basement has the only outlets at every seat and is therefore full from about 10am.",
+          "source": "study_library_hours.txt",
+          "label": "study_library_hours.txt#0",
+          "distance": 0.4703996845754693,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Noise levels in Calder Annexe\n\nAsked about this a lot so writing it down. Depends entirely on your cluster; there's no building-wide pattern.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.",
+          "source": "housing_calder_annexe_noise.txt",
+          "label": "housing_calder_annexe_noise.txt#0",
+          "distance": 0.5051690340042114,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "On the library holds\n\nYou can place a hold on a checked-out book and it usually arrives in two to three days. What isn't advertised: the interlibrary system covers eleven other institutions and requests through it take about a week but almost never fail.",
+          "source": "admin_library_holds.txt",
+          "label": "admin_library_holds.txt#0",
+          "distance": 0.5160137414932251,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Noise levels in Morrow House\n\nAsked about this a lot so writing it down. Loud until about 1am on weekends, no enforced quiet hours.\n\nIf you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.",
+          "source": "housing_morrow_house_noise.txt",
+          "label": "housing_morrow_house_noise.txt#0",
+          "distance": 0.5241934061050415,
+          "produced_by": "chunker.py::split_documents"
+        },
+        {
+          "text": "Textbooks without paying full price\n\nThe library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.",
+          "source": "money_textbooks.txt",
+          "label": "money_textbooks.txt#0",
+          "distance": 0.5333077148199334,
+          "produced_by": "chunker.py::split_documents"
+        }
+      ],
+      "gate": {
+        "passed": true,
+        "best_distance": 0.4703996845754693,
+        "threshold": 0.65
+      },
+      "model_calls": 1
+    }
+  ],
+  "out_of_scope": [
+    {
+      "question": "What is the capital of Mongolia?",
+      "refused": true,
+      "best_distance": 0.824593186378479
+    },
+    {
+      "question": "How do I change the oil in a diesel engine?",
+      "refused": true,
+      "best_distance": 0.9231168031692505
+    },
+    {
+      "question": "Who won the 1994 World Cup?",
+      "refused": true,
+      "best_distance": 0.8858600854873657
+    },
+    {
+      "question": "What is the recommended dosage of ibuprofen for a headache?",
+      "refused": true,
+      "best_distance": 0.8486931364455805
+    },
+    {
+      "question": "How do I write a for loop in Rust?",
+      "refused": true,
+      "best_distance": 0.8635140061378479
+    }
+  ],
+  "out_of_scope_model_calls": 0,
+  "completed_at": "2026-09-16T22:57:11.790563+00:00",
+  "usage": "15 model calls this session, 7075 tokens (6460 in, 615 out)",
+  "tokens": {
+    "prompt": 6460,
+    "output": 615,
+    "total": 7075
+  }
+}

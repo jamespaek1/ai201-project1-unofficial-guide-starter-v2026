@@ -1,0 +1,48 @@
+No scorer.py found — running unscored. Verdict column will be blank.
+You'll build scorer.py in class in week 2.
+
+
+How does housing lottery priority differ for rising sophomores versus juniors and seniors?
+  run 1: —  (best distance 0.192)
+  run 2: —  (best distance 0.192)
+  run 3: —  (best distance 0.192)
+
+What are the separate wash and dry prices in Morrow House, and which payment methods work?
+  run 1: —  (best distance 0.252)
+  run 2: —  (best distance 0.252)
+  run 3: —  (best distance 0.252)
+
+How long is the Kestrel Commons wait between 12:15 and 1:00, and before 11:45?
+  run 1: —  (best distance 0.229)
+  run 2: —  (best distance 0.229)
+  run 3: —  (best distance 0.229)
+
+In CS 210, are the midterms and final curved, and what material are the exams drawn from?
+  run 1: —  (best distance 0.212)
+  run 2: —  (best distance 0.212)
+  run 3: —  (best distance 0.212)
+
+When does the library close during term versus reading week?
+  run 1: —  (best distance 0.470)
+  run 2: —  (best distance 0.470)
+  run 3: —  (best distance 0.470)
+
+Out-of-scope questions (the gate should refuse these):
+  refused  (best distance 0.825)  What is the capital of Mongolia?
+  refused  (best distance 0.923)  How do I change the oil in a diesel engine?
+  refused  (best distance 0.886)  Who won the 1994 World Cup?
+  refused  (best distance 0.849)  What is the recommended dosage of ibuprofen for a headache?
+  refused  (best distance 0.864)  How do I write a for loop in Rust?
+  -> gate refused 5 of 5
+
+Wrote results/run_2026-09-16_1857_before.md
+15 model calls this session, 7075 tokens (6460 in, 615 out)
+
+Commit this file. It's the evidence the run actually happened.
+Traceback (most recent call last):
+  File "/Users/jamespaek/Documents/Codex/2026-09-14/com/work/assignment/tools/evaluate_week2.py", line 129, in <module>
+    main()
+  File "/Users/jamespaek/Documents/Codex/2026-09-14/com/work/assignment/tools/evaluate_week2.py", line 123, in main
+    app.cmd_chunks(app.build_parser().parse_args(["chunks", "-n", "5"]))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: main() takes 0 positional arguments but 1 was given

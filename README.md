@@ -243,3 +243,114 @@ records provider exceptions explicitly and continues the scheduled trials;
 it does not change prompts or model behavior. Verdicts will be assigned by
 reading the original required-facts table, not by keyword matches. The same
 instrumentation will be used after the one improvement.
+
+
+## Run Log — Before
+
+Configuration: Week 1 pipeline at `0b4e4e6`, 115 chunks, `CHUNK_SIZE=350`,
+zero body overlap, top-k 5, cosine gate 0.65, real `all-MiniLM-L6-v2` embeddings,
+and `gemini-3.5-flash-lite`. Fifteen scheduled uncached requests produced
+12 answers and three HTTP 503 errors. Reported usage was 7,075 tokens
+(6,460 input, 615 output); failed calls did not report token usage.
+
+| Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
+|---|---|---|---|---|---|
+| 1. A retrieved chunk contains the complete answer | At least 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a retrieved source | 5 of 5 | 3/5 | 4/5 | 5/5 | MISSED |
+| 3. Gate stops out-of-corpus questions | At least 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Sampled chunks are self-contained and focused | 5 of 5 | 4/5 | 4/5 | 4/5 | MISSED |
+| 5. Complete, supported answers without source mixing | At least 4 of 5 | 3/5 | 4/5 | 5/5 | MISSED |
+
+Runs are the first, second, and third trial of each question, as in the starter
+runner (which schedules by question). Criterion 3 and chunk inspection are
+single deterministic measurements repeated across the columns, as the original
+criteria permit. Every scheduled in-corpus request counts in the denominator.
+For criterion 2, an error provides no cited answer and therefore counts as a
+miss: among answers actually generated, citation coverage was 12/12. This
+separates the delivery failure from a missing-citation generation mistake.
+
+Raw reports: [starter run log](results/run_2026-09-16_1857_before.md),
+[full answers and retrieved chunks](results/week2_before_evidence.json),
+[console output](results/week2_before_console.txt), and
+[chunk sample](results/week2_before_chunks.txt). Detailed judgments are in
+[the assessment](results/week2_before_assessment.md). No keyword scorer was
+used; the blank question-level cells in the starter report are intentional.
+
+### Real output for the five criteria
+
+**1 — Retrieval.** Housing-lottery trial 1, rank 1:
+`admin_housing_lottery.txt#0`, distance 0.191651.
+Produced by `store.py::search`, text from `chunker.py::split_documents`.
+
+```text
+On the housing lottery
+
+The housing lottery is not random in the way most people assume. Rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly. That means a senior who took summer courses reliably beats a senior who didn't. Numbers come out the second week of March and selection runs over four evenings.
+```
+
+**2 — Source attribution.** Housing-lottery trial 1, produced by
+`generate.py::answer_from_chunks` via `run_eval.py::run_once`:
+
+```text
+Rising sophomores get a number drawn at random in the housing lottery, whereas juniors and seniors are ordered by accumulated credit hours first, with random tie-breaking used only when necessary. 
+
+Source: admin_housing_lottery.txt
+```
+
+The missing cited answer in Morrow House trial 1 was a real provider error,
+not a refusal or fabricated answer. `generate.py::generate` raised the following;
+the evaluation wrapper preserved it and continued the scheduled trials:
+
+```text
+ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+```
+
+**3 — Relevance gate.** Actual output of
+`run_eval.py::check_out_of_scope`, using `store.py::search` and `gate.py::check`:
+
+```text
+refused  (best distance 0.825)  What is the capital of Mongolia?
+  refused  (best distance 0.923)  How do I change the oil in a diesel engine?
+  refused  (best distance 0.886)  Who won the 1994 World Cup?
+  refused  (best distance 0.849)  What is the recommended dosage of ibuprofen for a headache?
+  refused  (best distance 0.864)  How do I write a for loop in Rust?
+  -> gate refused 5 of 5
+```
+
+The evidence records zero model calls for this deterministic gate pass.
+
+**4 — Chunk quality.** Fifth sampled chunk, `housing_morrow_house.txt#0`,
+produced by `chunker.py::split_documents`, printed by `app.py::cmd_chunks`:
+
+```text
+Morrow House — what it's actually like
+
+Just finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.
+
+The good: cheapest housing tier by about $900 a year, and the singles are real singles.
+
+The bad: known damp problem on the ground floor; two rooms were taken offline in 2024.
+```
+
+The title and sentences are intact, but room layout, price, and maintenance
+are separate topics under the original criterion. This chunk fails focus.
+
+**5 — Complete answers.** Kestrel Commons trial 1, produced by
+`generate.py::answer_from_chunks` via `run_eval.py::run_once`:
+
+```text
+The wait time at Kestrel Commons is 20 to 25 minutes between 12:15 and 1:00, and under 5 minutes before 11:45 (from dining_kestrel_commons.txt).
+```
+
+Both requested time windows are answered and attributed to the source that
+contains both. Morrow House and library trial 1 failed with 503 errors, so
+only three of five complete answers were delivered in run 1.
+
+### Evidence-capture note
+
+All 15 baseline trials, the gate pass, the official Markdown report, and the
+completed JSON were saved before the wrapper's final chunk-printing step hit
+an argument-signature error. That reporting-only call was corrected, and
+`python app.py chunks -n 5` was executed separately against the unchanged
+baseline. The original console traceback is retained. No model trial was
+replaced or discarded because of this instrumentation mistake.
