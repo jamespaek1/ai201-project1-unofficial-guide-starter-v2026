@@ -354,3 +354,74 @@ an argument-signature error. That reporting-only call was corrected, and
 `python app.py chunks -n 5` was executed separately against the unchanged
 baseline. The original console traceback is retained. No model trial was
 replaced or discarded because of this instrumentation mistake.
+
+## Verdicts
+
+1. **MET — Retrieval:** All five questions have a single complete supporting
+   chunk in their top five in every run. Kestrel's complete source is rank 5;
+   the rank-1 follow-up alone is insufficient. A generation error does not
+   erase the successful retrieval recorded before it.
+2. **MISSED — Cited answers delivered:** Runs delivered 3, 4, and 5 cited
+   answers out of five scheduled questions, short of five in every run.
+   Every answer actually returned had a valid source; the misses are absent
+   answers during provider errors, not invented or omitted citations.
+3. **MET — Gate:** All five unrelated questions were refused before generation,
+   exceeding the four-of-five target. This is one deterministic observation.
+4. **MISSED — Chunks:** Four of the five deterministic samples pass. Morrow
+   House combines the three housing topics the original criterion explicitly
+   says to keep separate, so intact sentences do not rescue the 5/5 target.
+5. **MISSED — Complete answers:** Run 1 delivers only 3/5 complete answers;
+   runs 2 and 3 reach 4/5 and 5/5. The target must hold in every run, and the
+   original criterion explicitly counts provider errors as misses. All twelve
+   generated answers otherwise contain every required fact, name supporting
+   retrieved sources, and introduce no unsupported factual claims.
+
+The strongest counterargument to criterion 2 is that “every answer produced”
+was cited: 12/12 generated answers did name sources. That is true, and is
+reported separately. The stricter end-to-end verdict uses the instruction to
+check all five in-corpus answers and does not give unavailable outputs a pass.
+No target or original criterion was changed to fit these observations.
+
+## Diagnoses
+
+**Criteria 2 and 5 — generation/service stage.** Morrow House trial 1,
+CS 210 trial 2, and library trial 1 each reached generation after retrieving
+all required facts and passing the 0.65 gate. The provider returned HTTP 503
+`UNAVAILABLE`, explicitly reporting temporary high demand. In
+`generate.py::generate`, only the 429/rate-limit condition entered the retry
+loop; a 503 immediately raised. The wrapper retained each exception instead
+of treating it as answer text. We cannot establish the provider's internal
+cause beyond its response, but we can identify why the application delivered
+no answer: it did not retry that reported transient failure.
+
+The pattern crosses laundry, course assessment, and library hours. That,
+together with complete supporting chunks and successful other trials for the
+same questions, argues against loading, embedding, or retrieval as the cause
+of these three misses. The common mechanism is the unhandled 503 response.
+
+**Criterion 4 — chunking stage.** In `chunker.py::split_documents`, complete
+paragraphs are packed until a 350-character soft target would be exceeded.
+The first Morrow House chunk fits physical room details, a housing-price
+paragraph, and a damp/maintenance paragraph below that limit. A size check
+preserves text but does not detect topic boundaries. Loading retained the
+facts; generation is irrelevant to this deterministic failure. Other housing
+chunks and the retrieved library-hours chunk also mix practical topics, so
+the sampled failure is consistent with a broader weakness of size-only
+paragraph packing.
+
+## The Improvement
+
+**Decision recorded before implementation:** extend the existing bounded
+retry path in `generate.py::generate` to the provider's explicit HTTP 503
+status. The diagnosis connects three failed trials across two criteria to
+that one error-handling gap. Keep the existing maximum of four attempts,
+exponential delays, pacing, prompt, models, corpus, top-k, gate, and chunker.
+A persistent 503 must still surface as a failed trial; authorization errors
+such as 403 must still fail immediately.
+
+This may help temporary overload clear within the existing attempt budget.
+It cannot guarantee provider recovery and adds latency and request attempts.
+A later batch could also improve simply because provider load changed, so
+both controlled retry tests and the actual before/after experiment will be
+reported. The chunking problem is deliberately left for a separate experiment:
+changing it at the same time would confound this one improvement.
