@@ -1,0 +1,23 @@
+Actual refusal strings from run_eval.py::run_once; the gate and retrieval are unchanged between configurations.
+
+Question: What is the capital of Mongolia?
+Gate: best distance 0.825 is over the 0.65 cutoff — refusing
+I don't have enough information about that.
+
+Question: How do I change the oil in a diesel engine?
+Gate: best distance 0.923 is over the 0.65 cutoff — refusing
+I don't have enough information about that.
+
+Question: Who won the 1994 World Cup?
+Gate: best distance 0.886 is over the 0.65 cutoff — refusing
+I don't have enough information about that.
+
+Question: What is the recommended dosage of ibuprofen for a headache?
+Gate: best distance 0.849 is over the 0.65 cutoff — refusing
+I don't have enough information about that.
+
+Question: How do I write a for loop in Rust?
+Gate: best distance 0.864 is over the 0.65 cutoff — refusing
+I don't have enough information about that.
+
+Model calls: 0

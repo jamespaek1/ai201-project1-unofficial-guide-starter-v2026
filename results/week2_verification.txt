@@ -1,0 +1,23 @@
+PASS 15 scheduled uncached trials per configuration
+PASS response cache disabled in both evaluations
+PASS baseline delivered-answer counts: 3/5, 4/5, 5/5
+PASS after delivered-answer counts: 5/5, 5/5, 5/5
+PASS all retrieval text, labels, distances, and gate decisions unchanged
+PASS all five sampled chunks unchanged
+PASS original criteria unchanged
+PASS corpus hash unchanged
+PASS all five out-of-scope questions refused with zero model calls per configuration
+PASS 30 real evaluation requests; no cache hits or live retries claimed
+PASS required section: Run Log — Before
+PASS required section: Verdicts
+PASS required section: Diagnoses
+PASS required section: The Improvement
+PASS required section: Run Log — After
+PASS required section: What's Still Broken
+PASS required section: What I'd Do Differently
+PASS required section: How I Used AI — Unit 2
+PASS all local README evidence links resolve
+PASS only generation retry behavior changed in the application
+PASS .env remains untracked
+PASS configured key available for leak check without displaying it
+PASS configured credential absent from report and new evidence

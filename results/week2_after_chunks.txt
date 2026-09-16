@@ -1,0 +1,49 @@
+115 chunks total. Showing 5, spread across the corpus.
+
+Paste these into your README under Sample Chunks. The rubric asks
+for the source file and the function that produced them — both are
+printed for you below.
+
+======================================================================
+Chunk 1  |  source: admin_add_drop_deadline.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the add/drop deadline
+
+You can add a course through the end of the second week. Dropping is a longer window — through the end of week six — but a drop after week two shows as a W on your transcript. Nothing anywhere on the registrar's site says this plainly, and students find out from each other.
+
+======================================================================
+Chunk 2  |  source: course_cs_210_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+CS 210 Data Structures — assessment
+
+Two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.
+
+Do the labs even though they're only 10% — the exams reuse the lab problems.
+
+======================================================================
+Chunk 3  |  source: course_phys_130.txt#1  |  produced by: chunker.py::split_documents
+======================================================================
+PHYS 130 Mechanics
+
+The one piece of advice: the lab practical is worth 20% and almost nobody prepares for it.
+
+======================================================================
+Chunk 4  |  source: dining_the_ridgeway_cafe_followup.txt#1  |  produced by: chunker.py::split_documents
+======================================================================
+Re: The Ridgeway Café
+
+Also worth saying: seating is tight; about 40 seats for a building of 900. Nobody tells you this at orientation.
+
+======================================================================
+Chunk 5  |  source: housing_morrow_house.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Morrow House — what it's actually like
+
+Just finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.
+
+The good: cheapest housing tier by about $900 a year, and the singles are real singles.
+
+The bad: known damp problem on the ground floor; two rooms were taken offline in 2024.
+
+For each one, ask: could someone answer a question using only this,
+without reading what came before or after?

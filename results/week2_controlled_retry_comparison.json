@@ -1,0 +1,25 @@
+{
+  "kind": "CONTROLLED FAILURE INJECTION; no live model calls",
+  "sequence": "HTTP 503, then a scripted successful response",
+  "baseline_commit": "0b4e4e6",
+  "results": [
+    {
+      "configuration": "before",
+      "answer": null,
+      "error": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'Scripted temporary outage', 'status': 'UNAVAILABLE'}}",
+      "attempts": 1,
+      "requested_delays_seconds": [],
+      "console": ""
+    },
+    {
+      "configuration": "after",
+      "answer": "CONTROLLED SUCCESS \u2014 not a real model answer",
+      "error": null,
+      "attempts": 2,
+      "requested_delays_seconds": [
+        1
+      ],
+      "console": "  [service unavailable] service pushed back. Retrying in 1s (attempt 1 of 4).\n"
+    }
+  ]
+}

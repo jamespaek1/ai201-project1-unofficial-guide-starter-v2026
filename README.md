@@ -1,14 +1,19 @@
 # The Unofficial Guide
 
-James Paek · `campus_life` · Week 1
+James Paek · `campus_life` · Units 1 and 2
 
 Implementation assistance: Codex. Work is being recorded as it is performed.
 
-**Week 1:** Implementation, five acceptance criteria, and all five submission
-sections are complete. The repository includes real chunk, retrieval, refusal,
-and generation evidence, plus more than four milestone commits. The formal
-Week 2 evaluation has not been run. AI assistance and the timing of the two
-custom criteria are disclosed below and in [`criteria.md`](criteria.md).
+**Unit 2 complete:** Both three-run evaluations, criterion verdicts, diagnoses,
+one measured improvement, remaining limitations, and AI disclosure are below.
+The later batch meets four of five criteria; chunk focus still misses. The
+live batches improved from 12/15 to 15/15 delivered answers, but no live retry
+was needed after the change, so causal benefit is claimed only for the
+controlled outage comparison. The original criteria and Unit 1 history are
+preserved. Course-portal submission is left to the student, as requested.
+
+The Week 1 material below is the historical build record. AI assistance and
+the timing of the two custom criteria are disclosed in [`criteria.md`](criteria.md).
 
 Setup and commands: [`RUNNING.md`](RUNNING.md). That starter reference is unchanged.
 
@@ -292,7 +297,7 @@ The housing lottery is not random in the way most people assume. Rising sophomor
 `generate.py::answer_from_chunks` via `run_eval.py::run_once`:
 
 ```text
-Rising sophomores get a number drawn at random in the housing lottery, whereas juniors and seniors are ordered by accumulated credit hours first, with random tie-breaking used only when necessary. 
+Rising sophomores get a number drawn at random in the housing lottery, whereas juniors and seniors are ordered by accumulated credit hours first, with random tie-breaking used only when necessary.
 
 Source: admin_housing_lottery.txt
 ```
@@ -425,3 +430,190 @@ A later batch could also improve simply because provider load changed, so
 both controlled retry tests and the actual before/after experiment will be
 reported. The chunking problem is deliberately left for a separate experiment:
 changing it at the same time would confound this one improvement.
+
+
+
+### Run Log — After
+
+The same five questions were asked three times with caching disabled, using
+production change `e3f7711`. All 15 trials returned complete, cited answers.
+All 15 succeeded on their first attempt: the live batch did not encounter a
+503 or exercise a retry. Usage was 8,808 reported tokens (8,025 input, 783
+output). The increased token total includes three more delivered answers;
+it is not evidence of longer answers or retry cost.
+
+| Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
+|---|---|---|---|---|---|
+| 1. A retrieved chunk contains the complete answer | At least 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a retrieved source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | At least 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Sampled chunks are self-contained and focused | 5 of 5 | 4/5 | 4/5 | 4/5 | MISSED |
+| 5. Complete, supported answers without source mixing | At least 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+
+Criterion 1 still meets its target because every retrieved set has a chunk
+containing the whole answer. Criteria 2 and 5 now meet theirs because every
+scheduled trial delivered all required facts and supporting filenames, with
+no unsupported or contradictory fact. Criterion 3 still rejects all five
+unrelated questions with zero model calls. Criterion 4 still misses because
+the unchanged Morrow House sample contains separate housing topics.
+
+Evidence: [starter after log](results/run_2026-09-16_1902_after.md),
+[full after evidence](results/week2_after_evidence.json),
+[console output](results/week2_after_console.txt),
+[chunk output](results/week2_after_chunks.txt), and
+[per-question assessment](results/week2_after_assessment.md).
+
+### Real output after the change
+
+**1 — Retrieval:** Housing-lottery trial 1, `admin_housing_lottery.txt#0`,
+returned by `store.py::search` from `chunker.py::split_documents`:
+
+```text
+On the housing lottery
+
+The housing lottery is not random in the way most people assume. Rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly. That means a senior who took summer courses reliably beats a senior who didn't. Numbers come out the second week of March and selection runs over four evenings.
+```
+
+**2 — Cited answer:** Morrow House trial 1, produced by
+`generate.py::answer_from_chunks` via `run_eval.py::run_once`:
+
+```text
+In Morrow House, laundry costs $1.50 to wash and $1.25 to dry, and it accepts either coin or card.
+
+Sources: `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt`
+```
+
+**3 — Gate refusal:** A separate direct check of all five out-of-scope
+questions exercised `run_eval.py::run_once`, `gate.py::check`, and the real
+`gate.py::REFUSAL` return path. Actual output for the first question:
+
+```text
+Question: What is the capital of Mongolia?
+Gate: best distance 0.825 is over the 0.65 cutoff — refusing
+I don't have enough information about that.
+```
+
+The complete [refusal check](results/week2_refusal_check.txt) confirms all five
+refusal strings and zero model calls. The original evaluator's after gate
+pass also refused 5/5 with zero model calls.
+
+**4 — Chunk quality:** The same fifth sample, `housing_morrow_house.txt#0`,
+printed by `app.py::cmd_chunks` from `chunker.py::split_documents`:
+
+```text
+Morrow House — what it's actually like
+
+Just finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.
+
+The good: cheapest housing tier by about $900 a year, and the singles are real singles.
+
+The bad: known damp problem on the ground floor; two rooms were taken offline in 2024.
+```
+
+**5 — Complete answer:** Kestrel trial 1, produced by
+`generate.py::answer_from_chunks` via `run_eval.py::run_once`:
+
+```text
+Between 12:15 and 1:00, the wait time at Kestrel Commons is 20 to 25 minutes, and before 11:45 the wait time is under 5 minutes.
+
+Source: dining_kestrel_commons.txt
+```
+
+### Before and after, side by side
+
+| Criterion | Before: runs 1 / 2 / 3 | After: runs 1 / 2 / 3 | Change in verdict |
+|---|---|---|---|
+| 1. Complete supporting chunk | 5/5 · 5/5 · 5/5 | 5/5 · 5/5 · 5/5 | MET → MET |
+| 2. Cited answers delivered | 3/5 · 4/5 · 5/5 | 5/5 · 5/5 · 5/5 | MISSED → MET |
+| 3. Out-of-scope gate | 5/5 · 5/5 · 5/5 | 5/5 · 5/5 · 5/5 | MET → MET |
+| 4. Self-contained, focused chunks | 4/5 · 4/5 · 4/5 | 4/5 · 4/5 · 4/5 | MISSED → MISSED |
+| 5. Complete grounded answers | 3/5 · 4/5 · 5/5 | 5/5 · 5/5 · 5/5 | MISSED → MET |
+
+**Did it help?** The later live batch delivered 15/15 complete cited answers,
+up from 12/15, but because it encountered no 503 responses, that increase cannot
+be attributed to retries; provider conditions may explain it. Under the same
+controlled sequence of a 503 followed by a successful response, the baseline
+code fails after one attempt and the improved code succeeds on the second.
+The change therefore fixes the diagnosed recovery gap in a controlled test,
+while its live benefit remains unmeasured under an actual post-change outage.
+
+| Controlled input (no real API call) | Baseline `0b4e4e6` | Improved code |
+|---|---|---|
+| 503, then success | Exception after 1 attempt | Success after 2 attempts, 1-second requested delay |
+
+Reproduce the controlled comparison with
+`python tools/check_retry_comparison.py`; its explicitly labeled
+[controlled evidence](results/week2_controlled_retry_comparison.json) is
+separate from the real Gemini logs and is never counted in the acceptance
+scores. The [11 passing tests](results/week2_tests.txt) also verify the four
+attempt limit, immediate 403 failure, existing 429 recovery, and all original
+chunk-content checks.
+
+Corpus and criteria SHA-256 values, sampled chunks, top-k, threshold, models,
+every retrieved chunk and distance, and every gate decision match between
+the two live configurations. Only 503 handling in `generate.py` changed the
+system's behavior. Evaluation tools and tests record and verify that change.
+No chunk reindexing, question changes, or replacement of failed trials occurred.
+
+## What's Still Broken
+
+**Criterion 4 remains missed.** The unchanged five sampled chunks still score
+4/5 because the Morrow House chunk combines room details, price, and damp
+maintenance. Next I would compare a topic-aware paragraph grouping strategy
+with this baseline, preserving titles and complete sentences. Even individual
+paragraphs sometimes mix topics, so simply lowering a character target may
+not solve it. I would also re-run retrieval: splitting too finely can move
+Kestrel's necessary fifth-ranked source out of the top five.
+
+I stopped after the one generation-reliability improvement to keep the
+experiment interpretable. The original 5/5 chunk target is retained. The
+underlying provider can still be unavailable beyond the four-attempt budget;
+retries reduce some transient failures, but do not remove that dependency.
+
+**Coverage limits:** Only five known in-corpus questions and five clearly
+unrelated questions were tested. These results do not establish robustness to
+unseen questions, near-campus questions whose requested fact is absent, or
+all 115 chunks. The corpus and model were held fixed throughout.
+
+## What I'd Do Differently
+
+- **Criterion 2:** State two separate measurements in the next unit: cited
+  answers delivered / all scheduled requests, and correctly cited answers /
+  answers generated. This baseline had perfect attribution among returned
+  answers but incomplete delivery, which the original wording could hide.
+- **Criterion 4:** Keep the 5/5 target but preselect source documents and topics
+  across corpus categories, then inspect their resulting chunks. The CLI's
+  evenly spaced sample changes when the total chunk count changes; fixed
+  documents make a later chunking comparison easier to interpret. That issue
+  does not affect this experiment, whose chunker and samples stayed identical.
+- **Criterion 3:** Include near-topic unsupported questions in the next test
+  suite, not only obviously unrelated ones. Passing the current five is useful
+  evidence for these questions but an easy challenge for a calibrated gate.
+
+These are proposals for the next unit. `criteria.md` and the original
+questions remain unchanged in this submission.
+
+## How I Used AI — Unit 2
+
+The user's request was “Complete the assignment.” Codex read the Unit 2
+requirements and continued the existing Unit 1 repository. The user later
+specified that no course-portal submission was needed.
+
+**Evidence and judgment:** Codex built an observation wrapper around the
+starter evaluator, ran the real Gemini calls, read the returned chunks and
+answers against the original fact table, and wrote the verdicts. It retained
+503 errors as failures instead of substituting sample answers or retrying the
+baseline until it passed. It corrected a reporting-only chunk-print call after
+all baseline evidence had already been saved; the original traceback remains
+in the console log. No student-only manual testing or independent authorship
+is claimed.
+
+**Diagnosis and implementation:** Codex identified the shared 503 mechanism
+across three different questions and the separate paragraph-packing problem.
+It chose one change, implemented bounded 503 retries, and verified transient
+recovery, persistent failure, immediate 403 failure, and existing 429 behavior
+with controlled tests. It also considered the counterargument that all
+actually generated baseline answers were cited; the README reports both
+that fact and the stricter five-request delivery counts. The student did not
+supply those diagnoses or code edits. All final prose and scoring were
+prepared with AI assistance and are available for the student to review.
